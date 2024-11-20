@@ -33,10 +33,10 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Spreadsheet.cpp">
+    <ClCompile Include="SpreadsheetView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cell.cpp">
+    <ClCompile Include="CellView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Helper\Fonts.cpp">
@@ -47,6 +47,18 @@
     </ClCompile>
     <ClCompile Include="Helper\MouseEvents.cpp">
       <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spreadsheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HeaderRow.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +71,10 @@
     <ClInclude Include="Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Spreadsheet.h">
+    <ClInclude Include="SpreadsheetView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cell.h">
+    <ClInclude Include="CellView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Helper\ColorPalette.h">
@@ -76,6 +88,18 @@
     </ClInclude>
     <ClInclude Include="Helper\MouseEvents.h">
       <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spreadsheet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderRow.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
