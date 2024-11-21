@@ -5,6 +5,11 @@ Model::Model()
 
 }
 
+void Model::init()
+{
+
+}
+
 void Model::addNewSpreadsheet(int rows, int cols, const std::string& label)
 {
 	_spreadsheets.push_back(Spreadsheet(rows, cols, label));

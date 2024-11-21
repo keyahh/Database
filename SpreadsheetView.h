@@ -1,6 +1,7 @@
 #ifndef SPREADSHEETVIEWH
 #define SPREADSHEETVIEWH
 
+#include "Spreadsheet.h"
 #include "CellView.h"
 
 class SpreadsheetView : public sf::Drawable
@@ -12,6 +13,7 @@ private:
 	void arrange();
 public:
 	SpreadsheetView(int rows = 0, int cols = 0, int cellWidth = 0, int cellHeight = 0);
+	SpreadsheetView(const Spreadsheet& spreadsheet);
 	void init(int rows = 2, int cols = 2, int cellWidth = 40, int cellHeight = 20);
 
 	virtual void setPosition(const sf::Vector2f& pos);

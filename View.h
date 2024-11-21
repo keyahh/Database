@@ -14,8 +14,8 @@ public:
 	friend class Controller;
 
 	View();
-	View(Model& model, int rows = 0, int cols = 0);
-	void init(Model& model, int rows = 0, int cols = 0);
+	View(Model& model);
+	void init(Model& model);
 
 	virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;
 };

@@ -5,6 +5,26 @@ SpreadsheetView::SpreadsheetView(int rows, int cols, int cellWidth, int cellHeig
 	init(rows, cols, cellWidth, cellHeight);
 }
 
+SpreadsheetView::SpreadsheetView(const Spreadsheet& spreadsheet)
+{
+	init(spreadsheet.getRows(), spreadsheet.getCols(), 40, 20);
+
+	//copy over data
+	for (int i = 1; i <= _rows; ++i)
+	{
+		for (int j = 1; j <= _cols; ++j)
+		{
+			_cells[i][j].setText(spreadsheet.getRow(i-1).getCell(j-1).getText());
+		}
+	}
+
+	//copy headers
+	for (int i = 1; i < +_rows; ++i)
+	{
+		_cells[0][i].setText(spreadsheet.getHeader(i - 1).getText());
+	}
+}
+
 void SpreadsheetView::init(int rows, int cols, int cellWidth, int cellHeight)
 {
 	_rows = rows;
@@ -21,6 +41,7 @@ void SpreadsheetView::arrange()
 {
 	_cells[0][0].setSize(sf::Vector2f(10.f, _cellHeight));
 	sf::Vector2f pos = _cells[0][0].getPosition();
+
 	//format row indicators
 	for (int i = 1; i < _rows + 1; ++i)
 	{

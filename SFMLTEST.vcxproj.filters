@@ -57,7 +57,7 @@
     <ClCompile Include="Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HeaderRow.cpp">
+    <ClCompile Include="Row.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +98,7 @@
     <ClInclude Include="Cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderRow.h">
+    <ClInclude Include="Row.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

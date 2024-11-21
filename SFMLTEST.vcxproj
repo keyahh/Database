@@ -139,12 +139,12 @@
     <ClCompile Include="CellView.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Database.cpp" />
-    <ClCompile Include="HeaderRow.cpp" />
     <ClCompile Include="Helper\Fonts.cpp" />
     <ClCompile Include="Helper\MouseEvents.cpp" />
     <ClCompile Include="Helper\Position.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Row.cpp" />
     <ClCompile Include="Spreadsheet.cpp" />
     <ClCompile Include="SpreadsheetView.cpp" />
     <ClCompile Include="View.cpp" />
@@ -154,12 +154,12 @@
     <ClInclude Include="CellView.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Database.h" />
-    <ClInclude Include="HeaderRow.h" />
     <ClInclude Include="Helper\ColorPalette.h" />
     <ClInclude Include="Helper\Fonts.h" />
     <ClInclude Include="Helper\MouseEvents.h" />
     <ClInclude Include="Helper\Position.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Row.h" />
     <ClInclude Include="Spreadsheet.h" />
     <ClInclude Include="SpreadsheetView.h" />
     <ClInclude Include="View.h" />

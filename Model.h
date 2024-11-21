@@ -11,7 +11,7 @@ private:
 public:
 	friend class Controller;
 	Model();
-
+	void init();
 	void addNewSpreadsheet(int rows, int cols, const std::string& label);
 	void addSpreadsheet(Spreadsheet& spreadsheet);
 

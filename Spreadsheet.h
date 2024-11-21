@@ -2,13 +2,15 @@
 #define SPREADSHEETH
 
 #include "Cell.h"
+#include "Row.h"
 #include <vector>
 
 class Spreadsheet
 {
 private:
 	std::string _label;
-	std::vector<std::vector<Cell>> _cells;
+	Row _header;
+	std::vector<Row> _cellRows;
 	int _rows = 0, _cols = 0;
 
 public:
@@ -20,7 +22,9 @@ public:
 	void setRows(int rows);
 	void setCols(int cols);
 
-	const std::vector<std::vector<Cell>>& getCells() const;
+	const std::vector<Row>& getCells() const;
+	const Row& getRow(int index) const;
+	const Cell& getHeader(int index) const;
 	const std::string& getLabel() const;
 	const int getRows() const;
 	const int getCols() const;

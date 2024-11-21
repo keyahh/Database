@@ -3,6 +3,7 @@
 
 int main()
 {
-    
+    Database db;
+    db.run();
 }
 
