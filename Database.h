@@ -16,7 +16,9 @@ private:
 	float dt = 0.f;
 
 public:
+	Database();
 
+	void run();
 };
 
 #endif

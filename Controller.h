@@ -10,7 +10,10 @@ private:
 	Model* _model = nullptr;
 
 public:
-
+	Controller();
+	Controller(View& viewPtr, Model& modelPtr);
+	void update(float dt);
+	void eventHandler(sf::RenderWindow& window, sf::Event event);
 };
 
 #endif

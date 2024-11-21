@@ -1,16 +1,22 @@
 #ifndef MODELH
 #define MODELH
 
-#include <string>
+#include "Spreadsheet.h"
 
 class Model
 {
 private:
-	std::string _text, _label;
+	std::vector<Spreadsheet> _spreadsheets;
 
 public:
 	friend class Controller;
-	Model(int rows = 0, int cols = 0, const std::string& text = "", const std::string& label = "");
+	Model();
+
+	void addNewSpreadsheet(int rows, int cols, const std::string& label);
+	void addSpreadsheet(Spreadsheet& spreadsheet);
+
+	const std::vector<Spreadsheet>& getSpreadsheets() const;
+
 };
 
 #endif
