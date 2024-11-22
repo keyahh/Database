@@ -14,7 +14,7 @@ void Spreadsheet::init(int rows, int cols, const std::string& label)
 	_header = Row(_cols);
 	for (int i = 0; i < cols; ++i)
 	{
-		_header.setCellData(i, std::to_string((char)(i+65)));
+		_header.setCellData(i, std::string(1, (char)(i + 65)));
 	}
 	//_cells = std::vector<std::vector<Cell>>(rows, std::vector<Cell>(cols, Cell()));
 }

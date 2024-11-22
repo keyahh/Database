@@ -3,7 +3,7 @@
 Database::Database()
 {
 	_window.create(sf::VideoMode(1920, 1080), "Database");
-    _model.addNewSpreadsheet(4, 4, "test");
+    _model.addNewSpreadsheet(10, 10, "test");
     _view.init(_model);
     _controller = Controller(_view, _model);
 }

@@ -17,6 +17,7 @@ void CellView::init(int width, int height, const std::string& text, const sf::Co
 	this->setOutlineColor(borderColor);
 	this->setOutlineThickness(2.f);
 	_text.setFont(Fonts::getFont(Fonts::OPEN_SANS_REGULAR));
+	_text.setFillColor(sf::Color::Black);
 	_text.setString(text);
 }
 

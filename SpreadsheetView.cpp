@@ -7,21 +7,21 @@ SpreadsheetView::SpreadsheetView(int rows, int cols, int cellWidth, int cellHeig
 
 SpreadsheetView::SpreadsheetView(const Spreadsheet& spreadsheet)
 {
-	init(spreadsheet.getRows(), spreadsheet.getCols(), 40, 20);
+	init(spreadsheet.getRows(), spreadsheet.getCols(), 100, 50);
 
 	//copy over data
-	for (int i = 1; i <= _rows; ++i)
+	for (int i = 1; i < _rows; ++i)
 	{
-		for (int j = 1; j <= _cols; ++j)
+		for (int j = 0; j < _cols; ++j)
 		{
-			_cells[i][j].setText(spreadsheet.getRow(i-1).getCell(j-1).getText());
+			_cells[i][j].setText(spreadsheet.getRow(i-1).getCell(j).getText());
 		}
 	}
 
 	//copy headers
-	for (int i = 1; i < +_rows; ++i)
+	for (int i = 0; i < _cols; ++i)
 	{
-		_cells[0][i].setText(spreadsheet.getHeader(i - 1).getText());
+		_cells[0][i].setText(spreadsheet.getHeader(i).getText());
 	}
 }
 
@@ -32,40 +32,32 @@ void SpreadsheetView::init(int rows, int cols, int cellWidth, int cellHeight)
 	_cellWidth = cellWidth;
 	_cellHeight = cellHeight;
 	_cells = std::vector<std::vector<CellView>>(rows + 1, 
-		std::vector<CellView>(cols + 1, CellView(cellWidth, cellHeight)));
+		std::vector<CellView>(cols, CellView(cellWidth, cellHeight)));
 
 	arrange();
 }
 
 void SpreadsheetView::arrange()
 {
-	_cells[0][0].setSize(sf::Vector2f(10.f, _cellHeight));
 	sf::Vector2f pos = _cells[0][0].getPosition();
 
-	//format row indicators
-	for (int i = 1; i < _rows + 1; ++i)
-	{
-		_cells[i][0].setSize(sf::Vector2f(10.f, _cellHeight));
+	////format row indicators
+	//for (int i = 1; i < _rows + 1; ++i)
+	//{
+	//	_cells[i][0].setSize(sf::Vector2f(10.f, _cellHeight));
 
-		pos.y += _cellHeight + 1.f;
-		_cells[i][0].setPosition(pos);
-		_cells[i][0].setText(std::to_string(i));
-	}
-
-	//write header
-	for (int i = 1; i < _rows + 1; ++i)
-	{
-		_cells[0][i].setText(std::to_string((char)i + 64));
-	}
+	//	pos.y += _cellHeight + 1.f;
+	//	_cells[i][0].setPosition(pos);
+	//	_cells[i][0].setText(std::to_string(i));
+	//}
 
 	//set cell positions
 	pos = _cells[0][0].getPosition();
-	pos.x += 11.f;
 	float baseX = pos.x;
 
-	for (int i = 1; i < _rows + 1; ++i)
+	for (int i = 0; i < _rows; ++i)
 	{
-		for (int j = 1; j < _cols + 1; ++j)
+		for (int j = 0; j < _cols; ++j)
 		{
 			_cells[i][j].setPosition(pos);
 			pos.x += _cellWidth + 1.f;
