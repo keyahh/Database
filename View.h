@@ -10,6 +10,7 @@ private:
 	Model* _modelPtr = nullptr;
 	std::vector<SpreadsheetView> _spreadsheets;
 
+
 public:
 	friend class Controller;
 

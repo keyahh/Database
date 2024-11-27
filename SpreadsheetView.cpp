@@ -21,6 +21,7 @@ SpreadsheetView::SpreadsheetView(const Spreadsheet& spreadsheet)
 	//copy headers
 	for (int i = 0; i < _cols; ++i)
 	{
+		//std::cout << spreadsheet.getHeader(i).getText() << std::endl;
 		_cells[0][i].setText(spreadsheet.getHeader(i).getText());
 	}
 }
@@ -40,16 +41,6 @@ void SpreadsheetView::init(int rows, int cols, int cellWidth, int cellHeight)
 void SpreadsheetView::arrange()
 {
 	sf::Vector2f pos = _cells[0][0].getPosition();
-
-	////format row indicators
-	//for (int i = 1; i < _rows + 1; ++i)
-	//{
-	//	_cells[i][0].setSize(sf::Vector2f(10.f, _cellHeight));
-
-	//	pos.y += _cellHeight + 1.f;
-	//	_cells[i][0].setPosition(pos);
-	//	_cells[i][0].setText(std::to_string(i));
-	//}
 
 	//set cell positions
 	pos = _cells[0][0].getPosition();

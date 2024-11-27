@@ -12,9 +12,10 @@ void Spreadsheet::init(int rows, int cols, const std::string& label)
 	_label = label;
 	_cellRows = std::vector<Row>(rows, Row(cols));
 	_header = Row(_cols);
-	for (int i = 0; i < cols; ++i)
+	for (int i = 1; i < cols; ++i)
 	{
-		_header.setCellData(i, std::string(1, (char)(i + 65)));
+		std::cout << "inserted str " << i << ": " << std::string(1, (char)(i + 64)) << std::endl;
+		_header.setCellData(i, std::string(1, (char)(i + 64)));
 	}
 	//_cells = std::vector<std::vector<Cell>>(rows, std::vector<Cell>(cols, Cell()));
 }

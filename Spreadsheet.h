@@ -4,6 +4,7 @@
 #include "Cell.h"
 #include "Row.h"
 #include <vector>
+#include <iostream>
 
 class Spreadsheet
 {
