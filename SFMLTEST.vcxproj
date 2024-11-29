@@ -138,31 +138,45 @@
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CellView.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Helper\Fonts.cpp" />
     <ClCompile Include="Helper\MouseEvents.cpp" />
     <ClCompile Include="Helper\Position.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Row.cpp" />
+    <ClCompile Include="SearchBox.cpp" />
     <ClCompile Include="Spreadsheet.cpp" />
     <ClCompile Include="SpreadsheetView.cpp" />
+    <ClCompile Include="States.cpp" />
     <ClCompile Include="View.cpp" />
+    <ClCompile Include="Word.cpp" />
+    <ClCompile Include="WordSort.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellView.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="Helper\ColorPalette.h" />
     <ClInclude Include="Helper\Fonts.h" />
     <ClInclude Include="Helper\MouseEvents.h" />
     <ClInclude Include="Helper\Position.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Row.h" />
+    <ClInclude Include="SearchBox.h" />
     <ClInclude Include="Spreadsheet.h" />
     <ClInclude Include="SpreadsheetView.h" />
+    <ClInclude Include="TreeNode.h" />
     <ClInclude Include="View.h" />
+    <ClInclude Include="Word.h" />
+    <ClInclude Include="WordSort.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

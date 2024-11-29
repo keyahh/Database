@@ -19,6 +19,24 @@
     <Filter Include="Source Files\Helper">
       <UniqueIdentifier>{d59ac962-29c2-4281-98a9-6a7cf0b559d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryParser">
+      <UniqueIdentifier>{e034ffac-b557-4e81-9a6e-07f45ff5d068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser">
+      <UniqueIdentifier>{02866b17-f096-424e-88c4-27e7a105a37a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TextInput">
+      <UniqueIdentifier>{2cca0219-0ef3-47ad-b90b-5c29dedc4f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TextInput">
+      <UniqueIdentifier>{a5ffb26e-54ad-414c-aec8-84cd76e3f2c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Spreadsheet">
+      <UniqueIdentifier>{f06b20c3-58ac-4f4c-b4cf-3aa64ab7514e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Spreadsheet">
+      <UniqueIdentifier>{c9830111-1a9a-44a9-8423-88ba69377f41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -33,12 +51,6 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpreadsheetView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CellView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Helper\Fonts.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
@@ -51,14 +63,41 @@
     <ClCompile Include="Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Spreadsheet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Cell.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Spreadsheet</Filter>
+    </ClCompile>
+    <ClCompile Include="CellView.cpp">
+      <Filter>Source Files\Spreadsheet</Filter>
     </ClCompile>
     <ClCompile Include="Row.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Spreadsheet</Filter>
+    </ClCompile>
+    <ClCompile Include="Spreadsheet.cpp">
+      <Filter>Source Files\Spreadsheet</Filter>
+    </ClCompile>
+    <ClCompile Include="SpreadsheetView.cpp">
+      <Filter>Source Files\Spreadsheet</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Source Files\TextInput</Filter>
+    </ClCompile>
+    <ClCompile Include="Heap.cpp">
+      <Filter>Source Files\TextInput</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchBox.cpp">
+      <Filter>Source Files\TextInput</Filter>
+    </ClCompile>
+    <ClCompile Include="States.cpp">
+      <Filter>Source Files\TextInput</Filter>
+    </ClCompile>
+    <ClCompile Include="Word.cpp">
+      <Filter>Source Files\TextInput</Filter>
+    </ClCompile>
+    <ClCompile Include="WordSort.cpp">
+      <Filter>Source Files\TextInput</Filter>
+    </ClCompile>
+    <ClCompile Include="FileReader.cpp">
+      <Filter>Source Files\TextInput</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,12 +108,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpreadsheetView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CellView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Helper\ColorPalette.h">
@@ -92,14 +125,41 @@
     <ClInclude Include="Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Spreadsheet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Cell.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Spreadsheet</Filter>
+    </ClInclude>
+    <ClInclude Include="CellView.h">
+      <Filter>Header Files\Spreadsheet</Filter>
+    </ClInclude>
+    <ClInclude Include="Spreadsheet.h">
+      <Filter>Header Files\Spreadsheet</Filter>
+    </ClInclude>
+    <ClInclude Include="SpreadsheetView.h">
+      <Filter>Header Files\Spreadsheet</Filter>
     </ClInclude>
     <ClInclude Include="Row.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Spreadsheet</Filter>
+    </ClInclude>
+    <ClInclude Include="Heap.h">
+      <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchBox.h">
+      <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeNode.h">
+      <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Word.h">
+      <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="WordSort.h">
+      <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="FileReader.h">
+      <Filter>Header Files\TextInput</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
