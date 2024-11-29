@@ -2,13 +2,16 @@
 #define CONTROLLERH
 
 #include "View.h"
+#include "WordSort.h"
 
 class Controller
 {
 private:
 	View* _view = nullptr;
 	Model* _model = nullptr;
+	WordSort _sorter;
 
+	void prioritize();
 public:
 	Controller();
 	Controller(View& viewPtr, Model& modelPtr);

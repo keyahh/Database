@@ -87,9 +87,6 @@
     <ClCompile Include="SearchBox.cpp">
       <Filter>Source Files\TextInput</Filter>
     </ClCompile>
-    <ClCompile Include="States.cpp">
-      <Filter>Source Files\TextInput</Filter>
-    </ClCompile>
     <ClCompile Include="Word.cpp">
       <Filter>Source Files\TextInput</Filter>
     </ClCompile>

@@ -111,7 +111,7 @@ const std::vector<Word>& WordSort::prioritize(const std::string& text)
 		heap.push(rankWord(text, _reader.getWords()[i]));
 	}
 
-	for(int i = 0; i < 10; ++i)
+	for(int i = 0; i < 3; ++i)
 	{
 		_sortedWords.push_back(heap.top());
 		heap.pop();

@@ -151,7 +151,6 @@
     <ClCompile Include="SearchBox.cpp" />
     <ClCompile Include="Spreadsheet.cpp" />
     <ClCompile Include="SpreadsheetView.cpp" />
-    <ClCompile Include="States.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Word.cpp" />
     <ClCompile Include="WordSort.cpp" />

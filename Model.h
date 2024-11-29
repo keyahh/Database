@@ -2,11 +2,13 @@
 #define MODELH
 
 #include "Spreadsheet.h"
+#include <sstream>
 
 class Model
 {
 private:
 	std::vector<Spreadsheet> _spreadsheets;
+	std::string _text, _label;
 
 public:
 	friend class Controller;
@@ -14,6 +16,14 @@ public:
 	void init();
 	void addNewSpreadsheet(int rows, int cols, const std::string& label);
 	void addSpreadsheet(Spreadsheet& spreadsheet);
+
+	const std::string& getText() const;
+	const std::string& getLabel() const;
+	std::string getLastWord() const;
+	void setText(const std::string& text);
+	void setLabel(const std::string& label);
+
+	void backspace();
 
 	const std::vector<Spreadsheet>& getSpreadsheets() const;
 

@@ -20,6 +20,47 @@ void Model::addSpreadsheet(Spreadsheet& spreadsheet)
 	_spreadsheets.push_back(spreadsheet);
 }
 
+const std::string& Model::getText() const
+{
+	return _text;
+}
+
+const std::string& Model::getLabel() const
+{
+	return _label;
+}
+
+std::string Model::getLastWord() const
+{
+	std::string temp;
+
+	std::stringstream ss(_text);
+
+	while (ss >> temp)
+	{
+	}
+
+	return temp;
+}
+
+void Model::setText(const std::string& text)
+{
+	_text = text;
+}
+
+void Model::setLabel(const std::string& label)
+{
+	_label = label;
+}
+
+void Model::backspace()
+{
+	if (_text.size() > 0)
+	{
+		_text.pop_back();
+	}
+}
+
 const std::vector<Spreadsheet>& Model::getSpreadsheets() const
 {
 	return _spreadsheets;
