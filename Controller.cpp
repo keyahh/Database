@@ -33,6 +33,17 @@ Controller::Controller(View& view, Model& model)
 
 void Controller::update(float dt)
 {
+	if (!_model->getText().empty())
+	{
+		if (_model->getLastWord() == _view->getTopSuggestion())
+			_view->showSuggestions(false);
+		else
+			_view->showSuggestions(true);
+	}
+	else
+	{
+		_view->showSuggestions(false);
+	}
 }
 
 void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)

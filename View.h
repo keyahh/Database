@@ -13,6 +13,7 @@ private:
 	std::vector<SpreadsheetView> _spreadsheets;
 	SearchBox _searchBox;
 	std::vector<sf::Text> _suggestions;
+	bool _showSuggestions = true;
 
 public:
 	friend class Controller;
@@ -22,6 +23,9 @@ public:
 	void init(Model& model);
 	void setSearchBoxPos(const sf::Vector2f& position);
 	void updateList(const std::vector<Word>& words);
+	void clearSuggestionsList();
+	std::string getTopSuggestion() const;
+	void showSuggestions(bool toggle);
 	virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;
 };
 

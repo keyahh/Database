@@ -4,6 +4,7 @@
 #include "View.h"
 #include "WordSort.h"
 #include "Graph.h"
+#include "Tokenizer.h"
 
 class Controller
 {

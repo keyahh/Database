@@ -31,9 +31,12 @@ void View::draw(sf::RenderTarget& window, sf::RenderStates states) const
 		window.draw(s);
 	}
 
-	for (auto& s : _suggestions)
+	if(_showSuggestions)
 	{
-		window.draw(s);
+		for (auto& s : _suggestions)
+		{
+			window.draw(s);
+		}
 	}
 }
 
@@ -52,4 +55,21 @@ void View::updateList(const std::vector<Word>& words)
 		_suggestions[i].setPosition(pos);
 		pos.y += 25.f;
 	}
+}
+
+void View::clearSuggestionsList()
+{
+	_suggestions.clear();
+}
+
+std::string View::getTopSuggestion() const
+{
+	std::string res = std::string(_suggestions.front().getString());
+	//std::cout << res << std::endl;
+	return res;
+}
+
+void View::showSuggestions(bool toggle)
+{
+	_showSuggestions = toggle;
 }
