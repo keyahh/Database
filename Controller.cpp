@@ -8,6 +8,27 @@ Controller::Controller(View& view, Model& model)
 	: _view(&view), _model(&model)
 {
 	_sorter = WordSort("queries.txt");
+	_parser = Graph(
+		{
+			{"START", {"SELECT", "INSERT", "CREATE"}},
+			{"SELECT", {"*COLUMNS"}},
+			{"*COLUMNS", {"*COLUMNS", "FROM"}},
+			{"FROM", {"*TABLE"}},
+			{"*TABLE", {"END"}},
+			{"INSERT", {"INTO"}},
+			{"INTO", {"*INSERT_TABLE"}},
+			{"*INSERT_TABLE", {"*INSERT_COLUMNS"}},
+			{"*INSERT_COLUMNS", {"*INSERT_COLUMNS", "VALUES"}},
+			{"VALUES", {"*VALUES"}},
+			{"*VALUES", {"*VALUES", "END"}},
+			{"CREATE", {"TABLE"}},
+			{"TABLE", {"*CREATE_COLUMNS"}},
+			{"*CREATE_COLUMNS", {"*CREATE_COLUMNS", "END"}}
+		}
+	);
+
+	//std::cout << _parser.checkPath({ "START", "INSERT", "INTO", "*INSERT_TABLE", "*INSERT_COLUMNS", "VALUES", "*VALUES", "END" });
+
 }
 
 void Controller::update(float dt)
@@ -19,7 +40,7 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 	if(event.type == sf::Event::TextEntered)
 	{
 		char c = static_cast<char>(event.text.unicode);
-		if (std::isalpha(c))
+		if (std::isalpha(c) || c == ' ')
 		{
 			_model->setText(_model->getText() + c);
 			_view->_searchBox.setText(_model->getText());

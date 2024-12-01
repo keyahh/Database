@@ -96,6 +96,12 @@
     <ClCompile Include="FileReader.cpp">
       <Filter>Source Files\TextInput</Filter>
     </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Tokenizer.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model.h">
@@ -157,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="FileReader.h">
       <Filter>Header Files\TextInput</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Tokenizer.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Queries.h">
+      <Filter>Header Files\QueryParser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

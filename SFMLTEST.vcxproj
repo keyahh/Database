@@ -141,6 +141,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Helper\Fonts.cpp" />
     <ClCompile Include="Helper\MouseEvents.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="SearchBox.cpp" />
     <ClCompile Include="Spreadsheet.cpp" />
     <ClCompile Include="SpreadsheetView.cpp" />
+    <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Word.cpp" />
     <ClCompile Include="WordSort.cpp" />
@@ -162,16 +164,19 @@
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Helper\ColorPalette.h" />
     <ClInclude Include="Helper\Fonts.h" />
     <ClInclude Include="Helper\MouseEvents.h" />
     <ClInclude Include="Helper\Position.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Queries.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="SearchBox.h" />
     <ClInclude Include="Spreadsheet.h" />
     <ClInclude Include="SpreadsheetView.h" />
+    <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="View.h" />
     <ClInclude Include="Word.h" />

@@ -24,7 +24,7 @@ Word WordSort::rankWord(const std::string& text, const std::string& word)
 int WordSort::levenshtein(const std::string& victim, const std::string& target)
 {
 	if (victim == target)
-		return 10001;
+		return 20000;
 
 	int targetSize = target.size();
 	std::vector<std::vector<int>> grid = createGrid(targetSize);
@@ -43,6 +43,8 @@ int WordSort::levenshtein(const std::string& victim, const std::string& target)
 		}
 		grid[0] = grid[1];
 	}
+	if(victim[0] == target[0])
+		return 10001 - grid[1][targetSize];
 
 	return 10000 - grid[1][targetSize];
 }

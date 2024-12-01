@@ -12,7 +12,8 @@ View::View(Model& model)
 void View::init(Model& model)
 {
 	_modelPtr = &model;
-	_searchBox.init(400.f, 100.f, 40, "");
+	_searchBox.init(1480.f, 100.f, 40, "");
+	_searchBox.setPosition({ 200.f, 100.f });
 
 	for (int i = 0; i < _modelPtr->getSpreadsheets().size(); ++i)
 	{
