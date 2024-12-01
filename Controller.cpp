@@ -40,17 +40,25 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 	if(event.type == sf::Event::TextEntered)
 	{
 		char c = static_cast<char>(event.text.unicode);
+
 		if (std::isalpha(c) || c == ' ')
 		{
 			_model->setText(_model->getText() + c);
 			_view->_searchBox.setText(_model->getText());
 			prioritize();
 		}
+
 		else if (c == '\b')
 		{
 			_model->backspace();
 			_view->_searchBox.setText(_model->getText());
 			prioritize();
+		}
+
+		else if (c == '\t')
+		{
+			_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
+			_view->_searchBox.setText(_model->getText());
 		}
 	}
 }

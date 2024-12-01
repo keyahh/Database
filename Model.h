@@ -20,6 +20,7 @@ public:
 	const std::string& getText() const;
 	const std::string& getLabel() const;
 	std::string getLastWord() const;
+	void setLastWord(const std::string& word);
 	void setText(const std::string& text);
 	void setLabel(const std::string& label);
 

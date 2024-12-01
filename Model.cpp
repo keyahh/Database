@@ -43,6 +43,26 @@ std::string Model::getLastWord() const
 	return temp;
 }
 
+void Model::setLastWord(const std::string& word)
+{
+	std::string temp;
+	std::stringstream ss(_text);
+	std::vector<std::string> words;
+
+	while (ss >> temp)
+	{
+		words.push_back(temp);
+	}
+	words[words.size() - 1] = word;
+	_text.clear();
+
+	for (auto& w : words)
+	{
+		_text.append(w + " ");
+	}
+	_text.pop_back();
+}
+
 void Model::setText(const std::string& text)
 {
 	_text = text;
