@@ -5,6 +5,7 @@
 #include "WordSort.h"
 #include "Graph.h"
 #include "Tokenizer.h"
+#include "Database.h"
 
 class Controller
 {
