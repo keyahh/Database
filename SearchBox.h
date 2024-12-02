@@ -12,6 +12,7 @@ class SearchBox : public sf::RectangleShape
 private:
 	sf::Text _text;
 	sf::Text _label;
+	sf::Text _errorMessage;
 	Cursor _cursor;
 
 	void enterInput(char c);
@@ -26,6 +27,8 @@ public:
 	virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;
 	virtual void setPosition(const sf::Vector2f& pos);
 
+	void setErrorMessage(const std::string& message);
+	void clearErrorMessage();
 	void setText(const std::string& text);
 	std::string getText();
 

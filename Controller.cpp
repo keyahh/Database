@@ -27,9 +27,6 @@ Controller::Controller(View& view, Model& model)
 			{"*CREATE_COLUMNS", {"*CREATE_COLUMNS", "END"}}
 		}
 	);
-
-	//std::cout << _parser.checkPath({ "START", "INSERT", "INTO", "*INSERT_TABLE", "*INSERT_COLUMNS", "VALUES", "*VALUES", "END" });
-
 }
 
 void Controller::update(float dt)
@@ -63,13 +60,13 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 			if (_parser.checkPath(convertedTokens))
 			{
 				std::cout << "valid path\n";
+				//_db.run(tokens, convertedTokens);
 			}
 			else
 			{
 				std::cout << "invalid path\n";
-
+				_view->_searchBox.setErrorMessage("Invalid syntax");
 			}
-
 
 			_model->setText("");
 		}
@@ -77,16 +74,19 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 		{
 			_model->backspace();
 			prioritize();
+			_view->_searchBox.clearErrorMessage();
 		}
 
 		else if (c == '\t')
 		{
 			_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
+			_view->_searchBox.clearErrorMessage();
 		}
 		else
 		{
 			_model->setText(_model->getText() + c);
 			prioritize();
+			_view->_searchBox.clearErrorMessage();
 		}
 
 		_view->_searchBox.setText(_model->getText());

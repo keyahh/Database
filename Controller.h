@@ -12,8 +12,10 @@ class Controller
 private:
 	View* _view = nullptr;
 	Model* _model = nullptr;
+
 	WordSort _sorter;
 	Graph _parser;
+	Database _db;
 
 	void prioritize();
 public:

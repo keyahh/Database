@@ -25,6 +25,12 @@ void SearchBox::init(float width, float height, int fontSize, const std::string&
 	Position::center(*this, _label);
 	_label.setPosition({ _label.getPosition().x, this->getGlobalBounds().top - _label.getGlobalBounds().height });
 
+	_errorMessage.setFont(Fonts::getFont(Fonts::OPEN_SANS_REGULAR));
+	_errorMessage.setCharacterSize(fontSize);
+	_errorMessage.setFillColor(sf::Color::Red);
+	_errorMessage.setString("");
+	_errorMessage.setPosition({ this->getPosition().x + 4.f, this->getPosition().y + this->getSize().y + fontSize});
+
 	_cursor.init(2, height - 2.f, sf::Color::White, 0.5f);
 }
 
@@ -78,6 +84,7 @@ void SearchBox::draw(sf::RenderTarget& window, sf::RenderStates states) const
 	window.draw(_cursor);
 	window.draw(_text);
 	window.draw(_label);
+	window.draw(_errorMessage);
 }
 
 void SearchBox::setPosition(const sf::Vector2f& pos)
@@ -87,6 +94,17 @@ void SearchBox::setPosition(const sf::Vector2f& pos)
 	Position::center(*this, _label);
 	_label.setPosition({ _label.getPosition().x, this->getGlobalBounds().top - _label.getGlobalBounds().height * 2 });
 	_cursor.setPosition({_cursor.getPosition().x + (pos.x - _cursor.getPosition().x), pos.y});
+	_errorMessage.setPosition({ this->getPosition().x + 4.f, this->getPosition().y + this->getSize().y });
+}
+
+void SearchBox::setErrorMessage(const std::string& message)
+{
+	_errorMessage.setString(message);
+}
+
+void SearchBox::clearErrorMessage()
+{
+	_errorMessage.setString("");
 }
 
 void SearchBox::setText(const std::string& text)
