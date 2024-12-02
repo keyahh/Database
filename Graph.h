@@ -18,8 +18,8 @@ private:
 	Query validateVarList(const std::string& token, Query prev);
 
 public:
-	Graph(int verticesCount = 18);
-	Graph(const std::unordered_map<std::string, std::set<std::string>>& map, int verticesCount = 18);
+	Graph(int verticesCount = 24);
+	Graph(const std::unordered_map<std::string, std::set<std::string>>& map, int verticesCount = 24);
 	void init(int verticesCount);
 
 	void addEdge(const std::string& source, const std::set<std::string>& targetSet);

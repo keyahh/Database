@@ -59,6 +59,16 @@ Query Graph::translate(const std::string& str)
 		return Query::VALUES;
 	else if (str == "*CREATE_TABLE")
 		return Query::CREATE_TABLE;
+	else if (str == "DELETE")
+		return Query::DELETE;
+	else if (str == "WHERE")
+		return Query::WHERE;
+	else if (str == "*CONDITION")
+		return Query::CONDITION_VAR;
+	else if (str == "LAUNCH")
+		return Query::LAUNCH;
+	else if (str == "*LAUNCH")
+		return Query::LAUNCH_VAR;
 	else
 		return Query::UNKNOWN;
 }
@@ -121,6 +131,8 @@ Query Graph::validateVar(Query var, Query prev)
 		return Query::INSERT_COLUMNS;
 	case Query::VALUES:
 		return Query::VALUES_VAR;
+	case Query::WHERE:
+		return Query::CONDITION_VAR;
 	}
 
 	return Query::UNKNOWN;

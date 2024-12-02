@@ -10,11 +10,11 @@ Controller::Controller(View& view, Model& model)
 	_sorter = WordSort("queries.txt");
 	_parser = Graph(
 		{
-			{"START", {"SELECT", "INSERT", "CREATE"}},
+			{"START", {"SELECT", "INSERT", "CREATE", "DELETE"}},
 			{"SELECT", {"*COLUMNS"}},
 			{"*COLUMNS", {"*COLUMNS", "FROM"}},
 			{"FROM", {"*TABLE"}},
-			{"*TABLE", {"END"}},
+			{"*TABLE", {"END", "WHERE"}},
 			{"INSERT", {"INTO"}},
 			{"INTO", {"*INSERT_TABLE"}},
 			{"*INSERT_TABLE", {"*INSERT_COLUMNS"}},
@@ -24,7 +24,11 @@ Controller::Controller(View& view, Model& model)
 			{"CREATE", {"TABLE"}},
 			{"TABLE", {"*CREATE_TABLE"}},
 			{"*CREATE_TABLE", {"*CREATE_COLUMNS"}},
-			{"*CREATE_COLUMNS", {"*CREATE_COLUMNS", "END"}}
+			{"*CREATE_COLUMNS", {"*CREATE_COLUMNS", "END"}},
+			{"DELETE", {"FROM"}},
+			{"WHERE", {"*CONDITION"}},
+			{"*CONDITION", {"*CONDITION", "END"}},
+			{"LAUNCH", {"*LAUNCH"}}
 		}
 	);
 }
@@ -54,13 +58,12 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 		if (event.text.unicode == 13) //unicode for enter key is 13
 		{
 			std::vector<std::string> tokens = Tokenizer::tokenize(_model->getText());
-			//for (auto& x : tokens)
-			//	std::cout << x << std::endl;
+
 			std::vector<Query> convertedTokens = _parser.convertTokens(tokens);
 			if (_parser.checkPath(convertedTokens))
 			{
 				std::cout << "valid path\n";
-				//_db.run(tokens, convertedTokens);
+				_db.run(convertedTokens, tokens);
 			}
 			else
 			{
