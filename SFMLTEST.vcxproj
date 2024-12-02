@@ -152,6 +152,8 @@
     <ClCompile Include="SearchBox.cpp" />
     <ClCompile Include="Spreadsheet.cpp" />
     <ClCompile Include="SpreadsheetView.cpp" />
+    <ClCompile Include="Table.cpp" />
+    <ClCompile Include="TableManager.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="View.cpp" />
     <ClCompile Include="Word.cpp" />
@@ -176,6 +178,8 @@
     <ClInclude Include="SearchBox.h" />
     <ClInclude Include="Spreadsheet.h" />
     <ClInclude Include="SpreadsheetView.h" />
+    <ClInclude Include="Table.h" />
+    <ClInclude Include="TableManager.h" />
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="View.h" />

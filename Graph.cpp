@@ -55,11 +55,10 @@ Query Graph::translate(const std::string& str)
 		return Query::CREATE_COLUMNS;
 	else if (str == "VALUES")
 		return Query::VALUES;
-}
-
-bool Graph::isConnected(const std::string& a, const std::string& b)
-{
-	return false;
+	else if (str == "*CREATE_TABLE")
+		return Query::CREATE_TABLE;
+	else
+		return Query::UNKNOWN;
 }
 
 void Graph::addVertex()
@@ -105,25 +104,98 @@ std::set<Query> Graph::getNeighbors(Query vertex)
 	return neighbors;
 }
 
+Query Graph::validateVar(Query var, Query prev)
+{
+	switch (prev)
+	{
+	case Query::TABLE:
+		return Query::CREATE_TABLE;
+	case Query::CREATE_TABLE:
+		return Query::CREATE_COLUMNS;
+	case Query::FROM:
+		return Query::TABLE_VAR;
+	case Query::INTO:
+		return Query::COLUMN_VAR;
+	case Query::SELECT:
+		return Query::COLUMN_VAR;
+	case Query::INSERT_TABLE:
+		return Query::INSERT_COLUMNS;
+	case Query::VALUES:
+		return Query::VALUES_VAR;
+	}
+
+	return Query::UNKNOWN;
+}
+
+Query Graph::validateVarList(const std::string& token, Query prev)
+{
+	if (token.back() != ')')
+		return Query::UNKNOWN;
+
+	else
+	{
+		switch (prev)
+		{
+		case Query::CREATE_TABLE:
+			return Query::CREATE_COLUMNS;
+		}
+	}
+	return Query();
+}
+
+std::vector<Query> Graph::convertVariables(const std::vector<std::string>& tokens)
+{
+	std::vector<Query> res;
+
+	for (int i = 0; i < tokens.size(); ++i)
+	{
+		Query temp = translate(tokens[i]);
+
+		if (temp != Query::UNKNOWN)
+			res.push_back(temp);
+
+		else
+		{
+			if(i >= 1)
+			{
+				/*if(tokens[i][0] == '(')
+					temp = validateVarList(tokens[i], res[i - 1]);
+				else
+					temp = validateVar(temp, res[i - 1]);*/
+				temp = validateVar(temp, res[i - 1]);
+				if (temp != Query::UNKNOWN)
+					res.push_back(temp);
+			}
+		}
+	}
+
+	return res;
+}
+
 bool Graph::checkPath(const std::vector<std::string>& tokens)
 {
-	if (tokens[0] != "START")
-		return false;
-
-	if (tokens.size() < 3)
+	//first command must stem from START
+	if (!isEdge(Query::START, translate(tokens[0])))
 		return false;
 
 	else
 	{
+		std::vector<Query> convertedTokens = convertVariables(tokens);
+
 		int a = 0, b = 1;
-		while (b < tokens.size())
+		while (b < convertedTokens.size())
 		{
-			if (!isEdge(translate(tokens[a]), translate(tokens[b])))
+			if (!isEdge(convertedTokens[a], convertedTokens[b]))
 				return false;
 			++a;
 			++b;
 		}
-		return true;
+
+		//last command must connect to END
+		if (isEdge(convertedTokens.back(), Query::END))
+			return true;
+
+		return false;
 	}
 }
 

@@ -22,7 +22,8 @@ Controller::Controller(View& view, Model& model)
 			{"VALUES", {"*VALUES"}},
 			{"*VALUES", {"*VALUES", "END"}},
 			{"CREATE", {"TABLE"}},
-			{"TABLE", {"*CREATE_COLUMNS"}},
+			{"TABLE", {"*CREATE_TABLE"}},
+			{"*CREATE_TABLE", {"*CREATE_COLUMNS"}},
 			{"*CREATE_COLUMNS", {"*CREATE_COLUMNS", "END"}}
 		}
 	);
@@ -48,29 +49,37 @@ void Controller::update(float dt)
 
 void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 {
+
 	if(event.type == sf::Event::TextEntered)
 	{
 		char c = static_cast<char>(event.text.unicode);
 
-		if (std::isalpha(c) || c == ' ')
+		if (event.text.unicode == 13) //unicode for enter key is 13
 		{
-			_model->setText(_model->getText() + c);
-			_view->_searchBox.setText(_model->getText());
-			prioritize();
+			std::vector<std::string> tokens = Tokenizer::tokenize(_model->getText());
+			for (auto& x : tokens)
+				std::cout << x << std::endl;
+			std::cout << _parser.checkPath(tokens);
+			_model->setText("");
 		}
-
 		else if (c == '\b')
 		{
 			_model->backspace();
-			_view->_searchBox.setText(_model->getText());
 			prioritize();
 		}
 
 		else if (c == '\t')
 		{
 			_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
-			_view->_searchBox.setText(_model->getText());
 		}
+		else
+		{
+			_model->setText(_model->getText() + c);
+			prioritize();
+		}
+
+		_view->_searchBox.setText(_model->getText());
+
 	}
 }
 

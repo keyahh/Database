@@ -73,6 +73,11 @@ void Model::setLabel(const std::string& label)
 	_label = label;
 }
 
+void Model::addTable(const Table& table)
+{
+	_tableManager.addTable(table);
+}
+
 void Model::backspace()
 {
 	if (_text.size() > 0)

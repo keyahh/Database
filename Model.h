@@ -2,12 +2,14 @@
 #define MODELH
 
 #include "Spreadsheet.h"
+#include "TableManager.h"
 #include <sstream>
 
 class Model
 {
 private:
 	std::vector<Spreadsheet> _spreadsheets;
+	TableManager _tableManager;
 	std::string _text, _label;
 
 public:
@@ -23,9 +25,8 @@ public:
 	void setLastWord(const std::string& word);
 	void setText(const std::string& text);
 	void setLabel(const std::string& label);
-
+	void addTable(const Table& table);
 	void backspace();
-
 	const std::vector<Spreadsheet>& getSpreadsheets() const;
 
 };

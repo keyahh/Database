@@ -16,11 +16,13 @@ private:
 	int _verticesCount = 0;
 	void depthFirst(std::vector<bool>& visited, Query vertex);
 	Query translate(const std::string& str);
-	bool isConnected(const std::string& a, const std::string& b);
+	std::vector<Query> convertVariables(const std::vector<std::string>& tokens);
+	Query validateVar(Query var, Query prev);
+	Query validateVarList(const std::string& token, Query prev);
 
 public:
-	Graph(int verticesCount = 16);
-	Graph(const std::unordered_map<std::string, std::set<std::string>>& map, int verticesCount = 16);
+	Graph(int verticesCount = 18);
+	Graph(const std::unordered_map<std::string, std::set<std::string>>& map, int verticesCount = 18);
 	void init(int verticesCount);
 
 	void addVertex();

@@ -37,6 +37,12 @@
     <Filter Include="Source Files\Spreadsheet">
       <UniqueIdentifier>{c9830111-1a9a-44a9-8423-88ba69377f41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Table">
+      <UniqueIdentifier>{35d19623-645d-4441-8510-255fc1d1971b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Table">
+      <UniqueIdentifier>{186ef497-444c-4e81-8618-e4d39950dd02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -101,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="Tokenizer.cpp">
       <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Table.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="TableManager.cpp">
+      <Filter>Source Files\Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="Queries.h">
       <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Header Files\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="TableManager.h">
+      <Filter>Header Files\Table</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
