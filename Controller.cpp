@@ -79,8 +79,11 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 
 		else if (c == '\t')
 		{
-			_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
-			_view->_searchBox.clearErrorMessage();
+			if(_model->getText().size() > 0)
+			{
+				_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
+				_view->_searchBox.clearErrorMessage();
+			}
 		}
 		else
 		{

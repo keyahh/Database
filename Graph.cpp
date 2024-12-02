@@ -6,8 +6,9 @@ Graph::Graph(int verticesCount)
 }
 
 Graph::Graph(const std::unordered_map<std::string, std::set<std::string>>& map, int verticesCount)
+	: _verticesCount(verticesCount)
 {
-	init(verticesCount);
+	//init(verticesCount);
 
 	for (auto& segment : map)
 	{
@@ -17,9 +18,8 @@ Graph::Graph(const std::unordered_map<std::string, std::set<std::string>>& map, 
 
 void Graph::init(int verticesCount)
 {
-	_adjMatrix = std::vector<std::vector<bool>>
-		(verticesCount, std::vector<bool>(verticesCount, false));
-
+	/*_adjMatrix = std::vector<std::vector<bool>>
+		(verticesCount, std::vector<bool>(verticesCount, false));*/
 	_verticesCount = verticesCount;
 }
 
@@ -63,16 +63,6 @@ Query Graph::translate(const std::string& str)
 		return Query::UNKNOWN;
 }
 
-void Graph::addVertex()
-{
-	++_verticesCount;
-	_adjMatrix.resize(_verticesCount);
-	for (auto& r : _adjMatrix)
-	{
-		r.resize(_verticesCount);
-	}
-}
-
 void Graph::addEdge(const std::string& source, const std::set<std::string>& targetSet)
 {
 	Query sourceQuery = translate(source);
@@ -82,28 +72,35 @@ void Graph::addEdge(const std::string& source, const std::set<std::string>& targ
 		Query target = translate(t);
 		newSet.insert(target);
 
-		if (sourceQuery < _verticesCount && 0 <= sourceQuery && target < _verticesCount && 0 <= target)
+		/*if (sourceQuery < _verticesCount && 0 <= sourceQuery && target < _verticesCount && 0 <= target)
 		{
 			_adjMatrix[sourceQuery][target] = true;
-		}
+		}*/
 	}
 	_edges.insert({sourceQuery, newSet});
 }
 
 bool Graph::isEdge(Query source, Query target)
 {
-	return _adjMatrix[source][target];
+	//return _adjMatrix[source][target];
+	if (_edges.contains(source))
+	{
+		return _edges[source].contains(target);
+	}
+
+	return false;
 }
 
 std::set<Query> Graph::getNeighbors(Query vertex)
 {
-	std::set<Query> neighbors;
+	/*std::set<Query> neighbors;
 	for (int i = 0; i < _verticesCount; ++i)
 	{
 		if (_adjMatrix[vertex][i])
 			neighbors.insert(Query(i));
 	}
-	return neighbors;
+	return neighbors;*/
+	return _edges[vertex];
 }
 
 Query Graph::validateVar(Query var, Query prev)
@@ -164,6 +161,7 @@ std::vector<Query> Graph::convertTokens(const std::vector<std::string>& tokens)
 					temp = validateVarList(tokens[i], res[i - 1]);
 				else
 					temp = validateVar(temp, res[i - 1]);*/
+
 				temp = validateVar(temp, res[i - 1]);
 				if (temp != Query::UNKNOWN)
 					res.push_back(temp);
@@ -177,45 +175,29 @@ std::vector<Query> Graph::convertTokens(const std::vector<std::string>& tokens)
 bool Graph::checkPath(const std::vector<Query>& tokens)
 {
 	//first command must stem from START
-	if (!isEdge(Query::START, tokens[0]))
-		return false;
-
-	else
+	if(tokens.size() > 0)
 	{
-		int a = 0, b = 1;
-		while (b < tokens.size())
+		if (!isEdge(Query::START, tokens[0]))
+			return false;
+
+		else
 		{
-			if (!isEdge(tokens[a], tokens[b]))
-				return false;
-			++a;
-			++b;
-		}
+			int a = 0, b = 1;
+			while (b < tokens.size())
+			{
+				if (!isEdge(tokens[a], tokens[b]))
+					return false;
+				++a;
+				++b;
+			}
 
-		//last command must connect to END
-		if (isEdge(tokens.back(), Query::END))
-			return true;
+			//last command must connect to END
+			if (isEdge(tokens.back(), Query::END))
+				return true;
 
-		return false;
-	}
-}
-
-void Graph::depthFirst(std::vector<bool>& visited, Query vertex)
-{
-	if (!visited[vertex])
-	{
-		visited[vertex] = true;
-		std::set<Query> neighbors = getNeighbors(vertex);
-		std::cout << vertex << " ";
-		for (const auto& x : neighbors)
-		{
-			depthFirst(visited, x);
+			return false;
 		}
 	}
-}
 
-void Graph::depthFirst(Query vertex)
-{
-	std::vector<bool> visited(_verticesCount, false);
-	depthFirst(visited, vertex);
-	std::cout << std::endl;
+	return false;
 }
