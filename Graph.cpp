@@ -53,6 +53,8 @@ Query Graph::translate(const std::string& str)
 		return Query::INSERT_COLUMNS;
 	else if (str == "*CREATE_COLUMNS")
 		return Query::CREATE_COLUMNS;
+	else if (str == "*VALUES")
+		return Query::VALUES_VAR;
 	else if (str == "VALUES")
 		return Query::VALUES;
 	else if (str == "*CREATE_TABLE")
@@ -115,7 +117,7 @@ Query Graph::validateVar(Query var, Query prev)
 	case Query::FROM:
 		return Query::TABLE_VAR;
 	case Query::INTO:
-		return Query::COLUMN_VAR;
+		return Query::INSERT_TABLE;
 	case Query::SELECT:
 		return Query::COLUMN_VAR;
 	case Query::INSERT_TABLE:

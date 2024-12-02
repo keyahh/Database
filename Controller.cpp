@@ -57,8 +57,8 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 		if (event.text.unicode == 13) //unicode for enter key is 13
 		{
 			std::vector<std::string> tokens = Tokenizer::tokenize(_model->getText());
-			/*for (auto& x : tokens)
-				std::cout << x << std::endl;*/
+			//for (auto& x : tokens)
+			//	std::cout << x << std::endl;
 			std::vector<Query> convertedTokens = _parser.convertTokens(tokens);
 			if (_parser.checkPath(convertedTokens))
 			{
