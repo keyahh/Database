@@ -143,7 +143,7 @@ Query Graph::validateVarList(const std::string& token, Query prev)
 	return Query();
 }
 
-std::vector<Query> Graph::convertVariables(const std::vector<std::string>& tokens)
+std::vector<Query> Graph::convertTokens(const std::vector<std::string>& tokens)
 {
 	std::vector<Query> res;
 
@@ -172,27 +172,25 @@ std::vector<Query> Graph::convertVariables(const std::vector<std::string>& token
 	return res;
 }
 
-bool Graph::checkPath(const std::vector<std::string>& tokens)
+bool Graph::checkPath(const std::vector<Query>& tokens)
 {
 	//first command must stem from START
-	if (!isEdge(Query::START, translate(tokens[0])))
+	if (!isEdge(Query::START, tokens[0]))
 		return false;
 
 	else
 	{
-		std::vector<Query> convertedTokens = convertVariables(tokens);
-
 		int a = 0, b = 1;
-		while (b < convertedTokens.size())
+		while (b < tokens.size())
 		{
-			if (!isEdge(convertedTokens[a], convertedTokens[b]))
+			if (!isEdge(tokens[a], tokens[b]))
 				return false;
 			++a;
 			++b;
 		}
 
 		//last command must connect to END
-		if (isEdge(convertedTokens.back(), Query::END))
+		if (isEdge(tokens.back(), Query::END))
 			return true;
 
 		return false;

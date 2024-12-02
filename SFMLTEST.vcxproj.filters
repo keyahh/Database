@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Table">
       <UniqueIdentifier>{186ef497-444c-4e81-8618-e4d39950dd02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Database">
+      <UniqueIdentifier>{e71122bb-5a8d-42b9-a02e-06c83f0c4c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Database">
+      <UniqueIdentifier>{0cf9de95-ac97-43ff-bb6b-739abcdcbc27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -66,7 +72,7 @@
     <ClCompile Include="Helper\MouseEvents.cpp">
       <Filter>Source Files\Helper</Filter>
     </ClCompile>
-    <ClCompile Include="Database.cpp">
+    <ClCompile Include="DatabaseProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Cell.cpp">
@@ -114,6 +120,9 @@
     <ClCompile Include="TableManager.cpp">
       <Filter>Source Files\Table</Filter>
     </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model.h">
@@ -137,7 +146,7 @@
     <ClInclude Include="Helper\MouseEvents.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="Database.h">
+    <ClInclude Include="DatabaseProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
@@ -190,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="TableManager.h">
       <Filter>Header Files\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Header Files\Database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

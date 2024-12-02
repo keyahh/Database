@@ -140,6 +140,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="DatabaseProgram.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Heap.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="DatabaseProgram.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Heap.h" />

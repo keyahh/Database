@@ -1,9 +1,9 @@
 #include <iostream>
-#include "Database.h"
+#include "DatabaseProgram.h"
 
 int main()
 {
-    Database db;
+    DatabaseProgram db;
     db.run();
 }
 

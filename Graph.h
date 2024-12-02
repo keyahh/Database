@@ -16,7 +16,6 @@ private:
 	int _verticesCount = 0;
 	void depthFirst(std::vector<bool>& visited, Query vertex);
 	Query translate(const std::string& str);
-	std::vector<Query> convertVariables(const std::vector<std::string>& tokens);
 	Query validateVar(Query var, Query prev);
 	Query validateVarList(const std::string& token, Query prev);
 
@@ -29,7 +28,8 @@ public:
 	void addEdge(const std::string& source, const std::set<std::string>& targetSet);
 	bool isEdge(Query source, Query target);
 	std::set<Query> getNeighbors(Query vertex);
-	bool checkPath(const std::vector<std::string>& tokens);
+	std::vector<Query> convertTokens(const std::vector<std::string>& tokens);
+	bool checkPath(const std::vector<Query>& tokens);
 
 	void depthFirst(Query vertex);
 };
