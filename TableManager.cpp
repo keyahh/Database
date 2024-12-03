@@ -37,3 +37,27 @@ const Table& TableManager::getTable(const std::string& tableName) const
 	if (contains(tableName))
 		return at(tableName);
 }
+
+Table* TableManager::getTablePtr(const std::string& tableName)
+{
+	if (contains(tableName))
+		return &(at(tableName));
+
+	return nullptr;
+}
+
+bool TableManager::colsExist(const std::string& tableName, const std::vector<std::string>& colNames)
+{
+	if (contains(tableName))
+	{
+		for (auto& c : colNames)
+		{
+			if (!at(tableName).contains(c))
+				return false;
+		}
+
+		return true;
+	}
+
+	return false;
+}

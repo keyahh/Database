@@ -16,6 +16,8 @@ public:
 		const std::vector<std::string>& values);
 	void deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition);
 	const Table& getTable(const std::string& tableName) const;
+	Table* getTablePtr(const std::string& tableName);
+	bool colsExist(const std::string& tableName, const std::vector<std::string>& colNames);
 };
 
 #endif

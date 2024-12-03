@@ -64,6 +64,11 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 			{
 				std::cout << "valid path\n";
 				_db.run(convertedTokens, tokens);
+
+				if (convertedTokens[0] = Query::SELECT)
+				{
+					_view->updateDisplaySheet(_db.getSelectedSpreadsheet());
+				}
 			}
 			else
 			{

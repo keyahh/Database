@@ -35,6 +35,16 @@ const Table& Database::getTable(const std::string& tableName) const
 	return _tbleMgr.getTable(tableName);
 }
 
+const bool& Database::hasSelected() const
+{
+	return _hasSelected;
+}
+
+const Spreadsheet& Database::getSelectedSpreadsheet() const
+{
+	return _selectedSheet;
+}
+
 std::vector<DBToken> Database::parse(const std::vector<Query>& queries, const std::vector<std::string>& tokens)
 {
 	std::vector<DBToken> dbtokens;
@@ -115,6 +125,29 @@ void Database::createTable(const std::vector<DBToken>& dbtokens)
 
 void Database::select(const std::vector<DBToken>& dbtokens)
 {
+	_selectedTable = nullptr;
+	_selectedCols.clear();
+
+	std::string tableName = dbtokens[3].data[0];
+	_selectedTable = _tbleMgr.getTablePtr(dbtokens[3].data[0]);
+
+	if (_selectedTable)
+	{
+		if (_tbleMgr.colsExist(tableName, dbtokens[1].data))
+		{
+			_selectedCols = dbtokens[1].data;
+			int rowCount = 0;
+			for (int i = 0; i < _selectedCols.size(); ++i)
+			{
+				int curCount = _selectedTable->count(_selectedCols[i]);
+				if (rowCount < curCount)
+					rowCount = curCount;
+			}
+
+			_selectedSheet = Spreadsheet(rowCount, _selectedCols.size(), 
+				_selectedTable->getSelectedCols(dbtokens[1].data));
+		}
+	}
 }
 
 void Database::insert(const std::vector<DBToken>& dbtokens)

@@ -4,11 +4,17 @@
 #include "TableManager.h"
 #include "Queries.h"
 #include "DBToken.h"
+#include "Spreadsheet.h"
 
 class Database
 {
 private:
 	TableManager _tbleMgr;
+	bool _hasSelected = false;
+	Table* _selectedTable = nullptr;
+	std::vector<std::string> _selectedCols;
+
+	Spreadsheet _selectedSheet;
 
 	void createTable(const std::vector<DBToken>& dbtokens);
 	void select(const std::vector<DBToken>& dbtokens);
@@ -24,6 +30,8 @@ public:
 	Database();
 	void run(const std::vector<Query>& queries, const std::vector<std::string>& tokens);
 	const Table& getTable(const std::string& tableName) const;
+	const bool& hasSelected() const;
+	const Spreadsheet& getSelectedSpreadsheet() const;
 };
 
 #endif

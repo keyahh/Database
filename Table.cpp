@@ -54,3 +54,23 @@ void Table::deleteData(const std::pair<std::string, std::string>& condition)
 		}
 	}
 }
+
+std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std::vector<std::string>& colNames)
+{
+	std::map<std::string, std::vector<std::string>> res;
+
+	for (int i = 0; i < colNames.size(); ++i)
+	{
+		auto range = equal_range(colNames[i]);
+		std::vector<std::string> temp;
+
+		for (auto itr = range.first; itr != range.second; ++itr)
+		{
+			temp.push_back(itr->second);
+		}
+
+		res.insert({ colNames[i], temp });
+	}
+
+	return res;
+}

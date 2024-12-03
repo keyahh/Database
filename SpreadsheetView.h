@@ -11,6 +11,7 @@ private:
 	std::vector<std::vector<CellView>> _cells;
 
 	void arrange();
+
 public:
 	SpreadsheetView(int rows = 0, int cols = 0, int cellWidth = 0, int cellHeight = 0);
 	SpreadsheetView(const Spreadsheet& spreadsheet);

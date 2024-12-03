@@ -18,6 +18,8 @@ public:
 	void addEntry(const std::string& column, const std::string& entry);
 	std::vector<std::string> getData(const std::string& column);
 	void deleteData(const std::pair<std::string, std::string>& condition);
+
+	std::map<std::string, std::vector<std::string>> getSelectedCols(const std::vector<std::string>& colNames);
 };
 
 #endif

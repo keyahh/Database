@@ -15,10 +15,10 @@ void View::init(Model& model)
 	_searchBox.init(1480.f, 100.f, 40, "");
 	_searchBox.setPosition({ 200.f, 100.f });
 
-	for (int i = 0; i < _modelPtr->getSpreadsheets().size(); ++i)
+	/*for (int i = 0; i < _modelPtr->getSpreadsheets().size(); ++i)
 	{
 		_spreadsheets.push_back(SpreadsheetView(_modelPtr->getSpreadsheets()[i]));
-	}
+	}*/
 }
 
 void View::draw(sf::RenderTarget& window, sf::RenderStates states) const
@@ -26,10 +26,12 @@ void View::draw(sf::RenderTarget& window, sf::RenderStates states) const
 
 	window.draw(_searchBox);
 
-	for (auto& s : _spreadsheets)
+	/*for (auto& s : _spreadsheets)
 	{
 		window.draw(s);
-	}
+	}*/
+
+	window.draw(_displaySheet);
 
 	if(_showSuggestions)
 	{
@@ -72,4 +74,9 @@ std::string View::getTopSuggestion() const
 void View::showSuggestions(bool toggle)
 {
 	_showSuggestions = toggle;
+}
+
+void View::updateDisplaySheet(const Spreadsheet& sheet)
+{
+	_displaySheet = SpreadsheetView(sheet);
 }

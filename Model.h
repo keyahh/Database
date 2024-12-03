@@ -8,7 +8,7 @@
 class Model
 {
 private:
-	std::vector<Spreadsheet> _spreadsheets;
+	//std::vector<Spreadsheet> _spreadsheets;
 	TableManager _tableManager;
 	std::string _text, _label;
 
@@ -16,8 +16,8 @@ public:
 	friend class Controller;
 	Model();
 	void init();
-	void addNewSpreadsheet(int rows, int cols, const std::string& label);
-	void addSpreadsheet(Spreadsheet& spreadsheet);
+	//void addNewSpreadsheet(int rows, int cols, const std::string& label);
+	//void addSpreadsheet(Spreadsheet& spreadsheet);
 
 	const std::string& getText() const;
 	const std::string& getLabel() const;
@@ -27,7 +27,7 @@ public:
 	void setLabel(const std::string& label);
 	void addTable(const Table& table);
 	void backspace();
-	const std::vector<Spreadsheet>& getSpreadsheets() const;
+	//const std::vector<Spreadsheet>& getSpreadsheets() const;
 
 };
 

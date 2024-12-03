@@ -10,7 +10,8 @@ class View : public sf::Drawable
 {
 private:
 	Model* _modelPtr = nullptr;
-	std::vector<SpreadsheetView> _spreadsheets;
+	//std::vector<SpreadsheetView> _spreadsheets;
+	SpreadsheetView _displaySheet;
 	SearchBox _searchBox;
 	std::vector<sf::Text> _suggestions;
 	bool _showSuggestions = true;
@@ -26,6 +27,7 @@ public:
 	void clearSuggestionsList();
 	std::string getTopSuggestion() const;
 	void showSuggestions(bool toggle);
+	void updateDisplaySheet(const Spreadsheet& sheet);
 	virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;
 };
 
