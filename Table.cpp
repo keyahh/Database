@@ -38,3 +38,19 @@ std::vector<std::string> Table::getData(const std::string& column)
 		return data;
 	}
 }
+
+void Table::deleteData(const std::pair<std::string, std::string>& condition)
+{
+	if(count(condition.first) > 0)
+	{
+		auto range = equal_range(condition.first);
+
+		for (auto itr = range.first; itr != range.second;)
+		{
+			if (itr->second == condition.second)
+				itr = erase(itr);
+			else
+				++itr;
+		}
+	}
+}

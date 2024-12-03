@@ -17,6 +17,7 @@ public:
 	const std::string& getName() const;
 	void addEntry(const std::string& column, const std::string& entry);
 	std::vector<std::string> getData(const std::string& column);
+	void deleteData(const std::pair<std::string, std::string>& condition);
 };
 
 #endif
