@@ -7,9 +7,28 @@ Database::Database()
 void Database::run(const std::vector<Query>& queries, const std::vector<std::string>& tokens)
 {
 	std::vector<DBToken> dbtokens = parse(queries, tokens);
+	for (auto& db : dbtokens)
+	{
+		std::cout << db << "\n";
+	}
+
 	if (dbtokens[0].command == Query::CREATE)
 	{
 		createTable(dbtokens);
+	}
+	switch (dbtokens[0].command)
+	{
+	case(Query::CREATE):
+		createTable(dbtokens);
+		break;
+	case(Query::SELECT):
+		select(dbtokens);
+		break;
+	case(Query::INSERT):
+		insert(dbtokens);
+		break;
+	case(Query::DELETE):
+		deleteTable(dbtokens);
 	}
 }
 
@@ -80,5 +99,17 @@ void Database::createTable(const std::vector<DBToken>& dbtokens)
 	if (dbtokens.size() < 3)
 		return;
 
-	
+	_tbleMgr.addTable(Table(dbtokens[2].data[0], dbtokens[3].data));
+}
+
+void Database::select(const std::vector<DBToken>& dbtokens)
+{
+}
+
+void Database::insert(const std::vector<DBToken>& dbtokens)
+{
+}
+
+void Database::deleteTable(const std::vector<DBToken>& dbtokens)
+{
 }
