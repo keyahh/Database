@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Table : public std::multimap<std::string, std::string>
 {
@@ -20,6 +21,8 @@ public:
 	void deleteData(const std::pair<std::string, std::string>& condition);
 
 	std::map<std::string, std::vector<std::string>> getSelectedCols(const std::vector<std::string>& colNames);
+
+	friend std::ostream& operator<<(std::ostream& cout, const Table& table);
 };
 
 #endif

@@ -8,11 +8,6 @@ void Database::run(const std::vector<Query>& queries, const std::vector<std::str
 {
 	std::vector<DBToken> dbtokens = parse(queries, tokens);
 
-	for (auto& db : dbtokens)
-	{
-		std::cout << db << "\n";
-	}
-
 	switch (dbtokens[0].command)
 	{
 	case(Query::CREATE):
@@ -129,6 +124,7 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 	_selectedCols.clear();
 
 	std::string tableName = dbtokens[3].data[0];
+	_tbleMgr.printTable(tableName);
 	_selectedTable = _tbleMgr.getTablePtr(dbtokens[3].data[0]);
 
 	if (_selectedTable)

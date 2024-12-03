@@ -17,7 +17,14 @@ const std::string& Table::getName() const
 
 void Table::addEntry(const std::string& column, const std::string& entry)
 {
-	if (contains(column))
+	bool found = false;
+	for (auto& i : _cols)
+	{
+		if (i == column)
+			found = true;
+	}
+
+	if (found)
 	{
 		this->insert({ column, entry });
 	}
@@ -73,4 +80,14 @@ std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std
 	}
 
 	return res;
+}
+
+std::ostream& operator<<(std::ostream& cout, const Table& table)
+{
+	for (auto& pair : table)
+	{
+		cout << pair.first << " " << pair.second << std::endl;
+	}
+
+	return cout;
 }

@@ -61,3 +61,11 @@ bool TableManager::colsExist(const std::string& tableName, const std::vector<std
 
 	return false;
 }
+
+void TableManager::printTable(const std::string& tableName)
+{
+	if (contains(tableName))
+	{
+		std::cout << at(tableName);
+	}
+}

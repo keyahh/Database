@@ -62,7 +62,7 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 			std::vector<Query> convertedTokens = _parser.convertTokens(tokens);
 			if (_parser.checkPath(convertedTokens))
 			{
-				std::cout << "valid path\n";
+				//std::cout << "valid path\n";
 				_db.run(convertedTokens, tokens);
 
 				if (convertedTokens[0] = Query::SELECT)
@@ -72,7 +72,7 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 			}
 			else
 			{
-				std::cout << "invalid path\n";
+				//std::cout << "invalid path\n";
 				_view->_searchBox.setErrorMessage("Invalid syntax");
 			}
 

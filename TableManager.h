@@ -18,6 +18,7 @@ public:
 	const Table& getTable(const std::string& tableName) const;
 	Table* getTablePtr(const std::string& tableName);
 	bool colsExist(const std::string& tableName, const std::vector<std::string>& colNames);
+	void printTable(const std::string& tableName);
 };
 
 #endif
