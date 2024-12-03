@@ -123,6 +123,9 @@
     <ClCompile Include="Database.cpp">
       <Filter>Source Files\Database</Filter>
     </ClCompile>
+    <ClCompile Include="DBToken.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model.h">
@@ -201,6 +204,9 @@
       <Filter>Header Files\Table</Filter>
     </ClInclude>
     <ClInclude Include="Database.h">
+      <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="DBToken.h">
       <Filter>Header Files\Database</Filter>
     </ClInclude>
   </ItemGroup>

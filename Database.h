@@ -13,6 +13,7 @@ private:
 	void createTable(const std::vector<DBToken>& dbtokens);
 	std::vector<DBToken> parse(const std::vector<Query>& queries, const std::vector<std::string>& tokens);
 	DBToken getVariables(const std::string& str);
+	std::vector<std::string> cutStr(const std::string& str, char delimiter);
 	bool isCommand(Query q);
 
 public:

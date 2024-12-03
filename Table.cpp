@@ -5,6 +5,11 @@ Table::Table(const std::string& name)
 {
 }
 
+Table::Table(const std::string& name, const std::vector<std::string>& colNames)
+	:_name(name), _cols(colNames)
+{
+}
+
 const std::string& Table::getName() const
 {
 	return _name;

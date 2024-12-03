@@ -20,7 +20,7 @@ std::vector<DBToken> Database::parse(const std::vector<Query>& queries, const st
 	{
 		if (isCommand(queries[i]))
 		{
-			dbtokens.emplace_back(DBToken(queries[i]));
+			dbtokens.push_back(DBToken(queries[i]));
 		}
 		else
 		{
@@ -33,15 +33,38 @@ std::vector<DBToken> Database::parse(const std::vector<Query>& queries, const st
 
 DBToken Database::getVariables(const std::string& str)
 {
+	//get list of variables
 	if (str[0] == '(')
 	{
-
+		return DBToken(cutStr(str, ','));
 	}
+
+	//single variable
+	return DBToken({ str });
+}
+
+std::vector<std::string> Database::cutStr(const std::string& str, char delimiter)
+{
+	std::string phrase = str;
+	phrase.erase(phrase.begin());
+	phrase.erase(phrase.begin() + (phrase.size() - 1));
+	if (phrase.find(delimiter) == std::string::npos)
+		return { phrase };
 	else
 	{
+		std::vector<std::string> temp;
+		int previous = 0, dlIndex = 0;
 
+		while (phrase.find(delimiter, previous + 1) != std::string::npos) {
+			dlIndex = phrase.find(delimiter, previous);
+			temp.push_back(phrase.substr(previous, dlIndex - previous));
+			previous += (dlIndex - previous) + 1;
+		}
+
+		temp.push_back(phrase.substr(previous));
+
+		return temp;
 	}
-	return DBToken();
 }
 
 bool Database::isCommand(Query q)
@@ -54,4 +77,8 @@ bool Database::isCommand(Query q)
 
 void Database::createTable(const std::vector<DBToken>& dbtokens)
 {
+	if (dbtokens.size() < 3)
+		return;
+
+	
 }
