@@ -11,6 +11,7 @@ private:
 	//std::vector<Spreadsheet> _spreadsheets;
 	TableManager _tableManager;
 	std::string _text, _label;
+	std::vector<std::string> _history;
 
 public:
 	friend class Controller;
