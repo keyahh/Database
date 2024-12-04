@@ -124,7 +124,7 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 	_selectedCols.clear();
 
 	std::string tableName = dbtokens[3].data[0];
-	_tbleMgr.printTable(tableName);
+	//_tbleMgr.printTable(tableName);
 	_selectedTable = _tbleMgr.getTablePtr(dbtokens[3].data[0]);
 
 	if (_selectedTable)

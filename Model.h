@@ -12,6 +12,7 @@ private:
 	TableManager _tableManager;
 	std::string _text, _label;
 	std::vector<std::string> _history;
+	int _histIndex = 0;
 
 public:
 	friend class Controller;
@@ -28,6 +29,10 @@ public:
 	void setLabel(const std::string& label);
 	void addTable(const Table& table);
 	void backspace();
+	void updateHistory();
+	void upArr();
+	void downArr();
+	
 	//const std::vector<Spreadsheet>& getSpreadsheets() const;
 
 };

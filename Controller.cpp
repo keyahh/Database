@@ -50,58 +50,71 @@ void Controller::update(float dt)
 
 void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 {
-
-	if(event.type == sf::Event::TextEntered)
+	if (event.type == sf::Event::KeyReleased)
 	{
-		char c = static_cast<char>(event.text.unicode);
-
-		if (event.text.unicode == 13) //unicode for enter key is 13
+		switch (event.key.code)
 		{
-			std::vector<std::string> tokens = Tokenizer::tokenize(_model->getText());
+		case(sf::Keyboard::Up):
+			_model->upArr();
+			break;
 
-			std::vector<Query> convertedTokens = _parser.convertTokens(tokens);
-			if (_parser.checkPath(convertedTokens))
+		case(sf::Keyboard::Down):
+			_model->downArr();
+			break;
+
+		case(sf::Keyboard::Enter):
+			if (_model->getText().length() > 0)
 			{
-				//std::cout << "valid path\n";
-				_db.run(convertedTokens, tokens);
+				_model->updateHistory();
 
-				if (convertedTokens[0] = Query::SELECT)
+				std::vector<std::string> tokens = Tokenizer::tokenize(_model->getText());
+
+				std::vector<Query> convertedTokens = _parser.convertTokens(tokens);
+				if (_parser.checkPath(convertedTokens))
 				{
-					_view->updateDisplaySheet(_db.getSelectedSpreadsheet());
+					//std::cout << "valid path\n";
+					_db.run(convertedTokens, tokens);
+
+					if (convertedTokens[0] = Query::SELECT)
+					{
+						_view->updateDisplaySheet(_db.getSelectedSpreadsheet());
+					}
+				}
+				else
+				{
+					//std::cout << "invalid path\n";
+					_view->_searchBox.setErrorMessage("Invalid syntax");
 				}
 			}
-			else
-			{
-				//std::cout << "invalid path\n";
-				_view->_searchBox.setErrorMessage("Invalid syntax");
-			}
-
 			_model->setText("");
+			break;
 		}
-		else if (c == '\b')
+		_view->_searchBox.setText(_model->getText());
+	}
+
+	if (event.type == sf::Event::TextEntered)
+	{
+		char c = static_cast<char>(event.text.unicode);
+		switch (c)
 		{
+		case('\b'):
 			_model->backspace();
 			prioritize();
 			_view->_searchBox.clearErrorMessage();
-		}
-
-		else if (c == '\t')
-		{
-			if(_model->getText().size() > 0)
+			break;
+		case('\t'):
+			if (_model->getText().size() > 0)
 			{
 				_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
 				_view->_searchBox.clearErrorMessage();
 			}
-		}
-		else
-		{
+			break;
+		default:
 			_model->setText(_model->getText() + c);
 			prioritize();
 			_view->_searchBox.clearErrorMessage();
 		}
-
 		_view->_searchBox.setText(_model->getText());
-
 	}
 }
 

@@ -86,6 +86,32 @@ void Model::backspace()
 	}
 }
 
+void Model::updateHistory()
+{
+	_history.push_back(_text);
+	_histIndex = _history.size() - 1;
+}
+
+void Model::upArr()
+{
+	if (_histIndex >= 0 && !_history.empty())
+	{
+		_text = _history[_histIndex];
+		if(_histIndex > 0)
+			--_histIndex;
+	}
+}
+
+void Model::downArr()
+{
+	if (_histIndex < _history.size() && !_history.empty())
+	{
+		_text = _history[_histIndex];
+		if (_histIndex < _history.size() - 1)
+			++_histIndex;
+	}
+}
+
 //const std::vector<Spreadsheet>& Model::getSpreadsheets() const
 //{
 //	return _spreadsheets;
