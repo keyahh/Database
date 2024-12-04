@@ -6,9 +6,9 @@ Spreadsheet::Spreadsheet(int rows, int cols, const std::string& label)
 }
 
 Spreadsheet::Spreadsheet(int rows, int cols, const std::map<std::string, std::vector<std::string>>& data)
-	: _rows(rows), _cols(cols)
+	: _rows(++rows), _cols(cols)
 {
-	_cells = std::vector<std::vector<std::string>>(rows + 1, std::vector<std::string>(cols));
+	_cells = std::vector<std::vector<std::string>>(rows, std::vector<std::string>(cols));
 	
 	int index = 0;
 	for (auto& pair : data)
@@ -21,11 +21,12 @@ Spreadsheet::Spreadsheet(int rows, int cols, const std::map<std::string, std::ve
 		}
 		++index;
 	}
+	std::cout << "finished\n";
 }
 
 void Spreadsheet::init(int rows, int cols, const std::string& label)
 {
-	_rows = rows;
+	_rows = rows + 1;
 	_cols = cols;
 	_label = label;
 
