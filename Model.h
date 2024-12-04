@@ -7,7 +7,7 @@
 
 class Model
 {
-private:
+private: 
 	//std::vector<Spreadsheet> _spreadsheets;
 	TableManager _tableManager;
 	std::string _text, _label;

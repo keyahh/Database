@@ -79,4 +79,5 @@ void View::showSuggestions(bool toggle)
 void View::updateDisplaySheet(const Spreadsheet& sheet)
 {
 	_displaySheet = SpreadsheetView(sheet);
+	_displaySheet.setPosition({ _searchBox.getPosition().x, _searchBox.getPosition().y + (_searchBox.getGlobalBounds().height * 2.f)});
 }

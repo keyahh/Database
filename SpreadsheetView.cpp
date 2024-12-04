@@ -64,8 +64,11 @@ void SpreadsheetView::arrange()
 
 void SpreadsheetView::setPosition(const sf::Vector2f& pos)
 {
-	_cells[0][0].setPosition(pos);
-	arrange();
+	if(!_cells[0].empty())
+	{
+		_cells[0][0].setPosition(pos);
+		arrange();
+	}
 }
 
 void SpreadsheetView::draw(sf::RenderTarget& window, sf::RenderStates states) const
