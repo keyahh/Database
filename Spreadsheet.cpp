@@ -21,7 +21,6 @@ Spreadsheet::Spreadsheet(int rows, int cols, const std::map<std::string, std::ve
 		}
 		++index;
 	}
-	std::cout << "finished\n";
 }
 
 void Spreadsheet::init(int rows, int cols, const std::string& label)

@@ -156,4 +156,6 @@ void Database::deleteData(const std::vector<DBToken>& dbtokens)
 {
 	std::pair<std::string, std::string> condition = findPair(dbtokens[4].data[0], '=');
 	_tbleMgr.deleteData(dbtokens[2].data[0], condition);
+
+	_tbleMgr.printTable(dbtokens[2].data[0]);
 }

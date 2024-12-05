@@ -7,7 +7,7 @@ SpreadsheetView::SpreadsheetView(int rows, int cols, int cellWidth, int cellHeig
 
 SpreadsheetView::SpreadsheetView(const Spreadsheet& spreadsheet)
 {
-	init(spreadsheet.getRows(), spreadsheet.getCols(), 100, 50);
+	init(spreadsheet.getRows(), spreadsheet.getCols(), 200, 50);
 
 	//copy over data
 	for (int i = 0; i < _rows; ++i)
