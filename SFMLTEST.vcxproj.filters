@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Database">
       <UniqueIdentifier>{0cf9de95-ac97-43ff-bb6b-739abcdcbc27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exceptions">
+      <UniqueIdentifier>{925cc0b4-59ac-4ed3-966d-02e1cc9548e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Exceptions">
+      <UniqueIdentifier>{908d5fa8-6c7e-4ddf-955b-20d701873980}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="Tokenizer.cpp">
       <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="InvalidColumn.cpp">
+      <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="DBToken.h">
       <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidColumn.h">
+      <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,14 +17,7 @@ const std::string& Table::getName() const
 
 std::string Table::addEntry(const std::string& column, const std::string& entry)
 {
-	bool found = false;
-	for (auto& i : _cols)
-	{
-		if (i == column)
-			found = true;
-	}
-
-	if (found)
+	if (hasColumn(column))
 	{
 		this->insert({ column, entry });
 		return "";
@@ -73,9 +66,6 @@ void Table::deleteData(const std::pair<std::string, std::string>& condition, con
 
 		for (auto itr = range.first; itr != range.second;)
 		{
-			/*if (itr->second == condition.second)
-				itr = erase(itr);*/
-
 			if(matchCondition(itr->second, condition.second, operation))
 				itr = erase(itr);
 
@@ -83,6 +73,17 @@ void Table::deleteData(const std::pair<std::string, std::string>& condition, con
 				++itr;
 		}
 	}
+}
+
+bool Table::hasColumn(const std::string& colName)
+{
+	for (auto& c : _cols)
+	{
+		if (colName == c)
+			return true;
+	}
+	throw InvalidColumn("Cannot find column");
+	return false;
 }
 
 std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std::vector<std::string>& colNames, const std::pair<std::string, std::string>& condition, const std::string& operation)

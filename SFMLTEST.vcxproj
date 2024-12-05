@@ -148,6 +148,7 @@
     <ClCompile Include="Helper\Fonts.cpp" />
     <ClCompile Include="Helper\MouseEvents.cpp" />
     <ClCompile Include="Helper\Position.cpp" />
+    <ClCompile Include="InvalidColumn.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SearchBox.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Helper\Fonts.h" />
     <ClInclude Include="Helper\MouseEvents.h" />
     <ClInclude Include="Helper\Position.h" />
+    <ClInclude Include="InvalidColumn.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Queries.h" />
     <ClInclude Include="SearchBox.h" />
