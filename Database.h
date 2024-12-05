@@ -24,7 +24,9 @@ private:
 	DBToken getVariables(const std::string& str);
 	std::vector<std::string> cutStr(const std::string& str, char delimiter); //returns vector of substrs split by every instance of delimiter
 	std::pair<std::string, std::string> findPair(const std::string& str, char delimiter); //returns pair split from str on the first instance of delimiter
+	std::pair<std::string, std::string> findPair(const std::string& str, const std::string& delimiter);
 	bool isCommand(Query q);
+	std::string findOperation(const std::string& str);
 
 public:
 	Database();

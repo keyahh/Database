@@ -24,12 +24,18 @@ void TableManager::insertRow(const std::string& tableName, const std::vector<std
 	}
 }
 
-void TableManager::deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition)
+void TableManager::deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition, const std::string& operation)
 {
 	if (contains(tableName))
 	{
-		at(tableName).deleteData(condition);
+		at(tableName).deleteData(condition, operation);
 	}
+}
+
+void TableManager::deleteTable(const std::string& tableName)
+{
+	if (contains(tableName))
+		erase(tableName);
 }
 
 const Table& TableManager::getTable(const std::string& tableName) const

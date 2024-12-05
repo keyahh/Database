@@ -95,11 +95,20 @@ std::vector<std::string> Database::cutStr(const std::string& str, char delimiter
 
 std::pair<std::string, std::string> Database::findPair(const std::string& str, char delimiter)
 {
+	int index = str.find(delimiter);
 	if (str.find(delimiter) == std::string::npos)
 		return {};
 	
-	int index = str.find(delimiter);
 	return std::pair<std::string, std::string>(str.substr(0, index), str.substr(index + 1));
+}
+
+std::pair<std::string, std::string> Database::findPair(const std::string& str, const std::string& delimiter)
+{
+	int index = str.find(delimiter);
+	if (index == std::string::npos)
+		return {};
+	
+	return std::pair<std::string, std::string>(str.substr(0, index), str.substr(index + delimiter.size()));
 }
 
 bool Database::isCommand(Query q)
@@ -108,6 +117,20 @@ bool Database::isCommand(Query q)
 		&& q != Query::CREATE_TABLE && q != Query::CREATE_COLUMNS
 		&& q != Query::INSERT_TABLE && q != Query::INSERT_COLUMNS
 		&& q != Query::VALUES_VAR && q != Query::CONDITION_VAR);
+}
+
+std::string Database::findOperation(const std::string& str)
+{
+	if (str.find(">=") != std::string::npos)
+		return ">=";
+	else if (str.find("<=") != std::string::npos)
+		return "<=";
+	else if (str.find("=") != std::string::npos)
+		return "=";
+	else if (str.find(">") != std::string::npos)
+		return ">";
+	else if (str.find("<") != std::string::npos)
+		return "<";
 }
 
 void Database::createTable(const std::vector<DBToken>& dbtokens)
@@ -131,17 +154,26 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 	{
 		if (_tbleMgr.colsExist(tableName, dbtokens[1].data))
 		{
-			_selectedCols = dbtokens[1].data;
-			int rowCount = 0;
-			for (int i = 0; i < _selectedCols.size(); ++i)
+			if (dbtokens.size() > 5)
 			{
-				int curCount = _selectedTable->count(_selectedCols[i]);
-				if (rowCount < curCount)
-					rowCount = curCount;
-			}
+				std::string operation = findOperation(dbtokens[5].data[0]);
+				std::pair<std::string, std::string> condition = findPair(dbtokens[5].data[0], operation);
 
-			_selectedSheet = Spreadsheet(rowCount, _selectedCols.size(), 
-				_selectedTable->getSelectedCols(dbtokens[1].data));
+			}
+			else
+			{
+				_selectedCols = dbtokens[1].data;
+				int rowCount = 0;
+				for (int i = 0; i < _selectedCols.size(); ++i)
+				{
+					int curCount = _selectedTable->count(_selectedCols[i]);
+					if (rowCount < curCount)
+						rowCount = curCount;
+				}
+
+				_selectedSheet = Spreadsheet(rowCount, _selectedCols.size(),
+					_selectedTable->getSelectedCols(dbtokens[1].data));
+			}
 		}
 	}
 }
@@ -154,8 +186,16 @@ void Database::insert(const std::vector<DBToken>& dbtokens)
 
 void Database::deleteData(const std::vector<DBToken>& dbtokens)
 {
-	std::pair<std::string, std::string> condition = findPair(dbtokens[4].data[0], '=');
-	_tbleMgr.deleteData(dbtokens[2].data[0], condition);
+	if(dbtokens.size() > 3) //delete on condition
+	{
+		std::string operation = findOperation(dbtokens[4].data[0]);
+		std::pair<std::string, std::string> condition = findPair(dbtokens[4].data[0], operation);
+		_tbleMgr.deleteData(dbtokens[2].data[0], condition, operation);
 
-	_tbleMgr.printTable(dbtokens[2].data[0]);
+		//_tbleMgr.printTable(dbtokens[2].data[0]);
+	}
+	else //delete whole table
+	{
+		_tbleMgr.deleteTable(dbtokens[2].data[0]);
+	}
 }

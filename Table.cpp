@@ -46,16 +46,37 @@ std::vector<std::string> Table::getData(const std::string& column)
 	}
 }
 
-void Table::deleteData(const std::pair<std::string, std::string>& condition)
+bool Table::matchCondition(const std::string& first, const std::string& second, const std::string& operation)
 {
+	if (operation == "=")
+		return first == second;
+	else if (operation == "<")
+		return first < second;
+	else if (operation == ">")
+		return first > second;
+	else if (operation == "<=")
+		return first <= second;
+	else if (operation == ">=")
+		return first >= second;
+
+	return false;
+}
+
+void Table::deleteData(const std::pair<std::string, std::string>& condition, const std::string& operation)
+{
+	std::cout << condition.first << std::endl;
 	if(count(condition.first) > 0)
 	{
 		auto range = equal_range(condition.first);
 
 		for (auto itr = range.first; itr != range.second;)
 		{
-			if (itr->second == condition.second)
+			/*if (itr->second == condition.second)
+				itr = erase(itr);*/
+
+			if(matchCondition(itr->second, condition.second, operation))
 				itr = erase(itr);
+
 			else
 				++itr;
 		}

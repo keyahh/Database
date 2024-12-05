@@ -14,17 +14,9 @@ SpreadsheetView::SpreadsheetView(const Spreadsheet& spreadsheet)
 	{
 		for (int j = 0; j < _cols; ++j)
 		{
-			//_cells[i][j].setText(spreadsheet.getRow(i-1).getCell(j).getText());
 			_cells[i][j].setText(spreadsheet.getCell(i, j));
 		}
 	}
-
-	//copy headers
-	//for (int i = 0; i < _cols; ++i)
-	//{
-	//	//std::cout << spreadsheet.getHeader(i).getText() << std::endl;
-	//	_cells[0][i].setText(spreadsheet.getHeader(i).getText());
-	//}
 }
 
 void SpreadsheetView::init(int rows, int cols, int cellWidth, int cellHeight)

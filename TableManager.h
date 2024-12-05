@@ -14,7 +14,8 @@ public:
 	void addTable(const Table& table);
 	void insertRow(const std::string& tableName, const std::vector<std::string>& columns, 
 		const std::vector<std::string>& values);
-	void deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition);
+	void deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition, const std::string& operation = "=");
+	void deleteTable(const std::string& tableName);
 	const Table& getTable(const std::string& tableName) const;
 	Table* getTablePtr(const std::string& tableName);
 	bool colsExist(const std::string& tableName, const std::vector<std::string>& colNames);
