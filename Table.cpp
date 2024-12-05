@@ -83,7 +83,7 @@ void Table::deleteData(const std::pair<std::string, std::string>& condition, con
 	}
 }
 
-std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std::vector<std::string>& colNames)
+std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std::vector<std::string>& colNames, const std::pair<std::string, std::string>& condition, const std::string& operation)
 {
 	std::map<std::string, std::vector<std::string>> res;
 
@@ -94,7 +94,14 @@ std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std
 
 		for (auto itr = range.first; itr != range.second; ++itr)
 		{
-			temp.push_back(itr->second);
+			if (!condition.second.empty())
+			{
+				if (matchCondition(itr->second, condition.second, operation))
+					temp.push_back(itr->second);
+			}
+			else
+				temp.push_back(itr->second);
+
 		}
 
 		res.insert({ colNames[i], temp });

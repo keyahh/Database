@@ -22,7 +22,7 @@ public:
 	std::vector<std::string> getData(const std::string& column);
 	void deleteData(const std::pair<std::string, std::string>& condition, const std::string& operation);
 
-	std::map<std::string, std::vector<std::string>> getSelectedCols(const std::vector<std::string>& colNames);
+	std::map<std::string, std::vector<std::string>> getSelectedCols(const std::vector<std::string>& colNames, const std::pair<std::string, std::string>& condition = {}, const std::string& operation = "=");
 
 	friend std::ostream& operator<<(std::ostream& cout, const Table& table);
 };
