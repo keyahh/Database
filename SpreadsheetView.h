@@ -13,7 +13,8 @@ private:
 	void arrange();
 
 public:
-	SpreadsheetView(int rows = 0, int cols = 0, int cellWidth = 0, int cellHeight = 0);
+	//SpreadsheetView(int rows = 0, int cols = 0, int cellWidth = 0, int cellHeight = 0);
+	SpreadsheetView();
 	SpreadsheetView(const Spreadsheet& spreadsheet);
 	void init(int rows, int cols, int cellWidth = 200, int cellHeight = 100);
 

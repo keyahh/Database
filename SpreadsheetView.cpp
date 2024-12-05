@@ -1,8 +1,13 @@
 #include "SpreadsheetView.h"
 
-SpreadsheetView::SpreadsheetView(int rows, int cols, int cellWidth, int cellHeight)
+//SpreadsheetView::SpreadsheetView(int rows, int cols, int cellWidth, int cellHeight)
+//{
+//	init(rows, cols, cellWidth, cellHeight);
+//}
+
+SpreadsheetView::SpreadsheetView()
 {
-	init(rows, cols, cellWidth, cellHeight);
+
 }
 
 SpreadsheetView::SpreadsheetView(const Spreadsheet& spreadsheet)
@@ -25,7 +30,7 @@ void SpreadsheetView::init(int rows, int cols, int cellWidth, int cellHeight)
 	_cols = cols;
 	_cellWidth = cellWidth;
 	_cellHeight = cellHeight;
-	_cells = std::vector<std::vector<CellView>>(rows + 1, 
+	_cells = std::vector<std::vector<CellView>>(rows, 
 		std::vector<CellView>(cols, CellView(cellWidth, cellHeight)));
 
 	arrange();
