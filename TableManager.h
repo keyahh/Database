@@ -11,15 +11,16 @@ private:
 public:
 	TableManager();
 
-	void addTable(const Table& table);
-	void insertRow(const std::string& tableName, const std::vector<std::string>& columns, 
+	std::string addTable(const Table& table);
+	std::string insertRow(const std::string& tableName, const std::vector<std::string>& columns, 
 		const std::vector<std::string>& values);
-	void deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition, const std::string& operation = "=");
-	void deleteTable(const std::string& tableName);
+	std::string deleteData(const std::string& tableName, const std::pair<std::string, std::string>& condition, const std::string& operation = "=");
+	std::string deleteTable(const std::string& tableName);
 	const Table& getTable(const std::string& tableName) const;
 	Table* getTablePtr(const std::string& tableName);
 	bool colsExist(const std::string& tableName, const std::vector<std::string>& colNames);
 	void printTable(const std::string& tableName);
+	bool hasTable(const std::string& tableName);
 };
 
 #endif

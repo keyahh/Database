@@ -56,10 +56,14 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 		{
 		case(sf::Keyboard::Up):
 			_model->upArr();
+			_view->_searchBox.clearErrorMessage();
+			_db.clearErrorMsg();
 			break;
 
 		case(sf::Keyboard::Down):
 			_model->downArr();
+			_view->_searchBox.clearErrorMessage();
+			_db.clearErrorMsg();
 			break;
 
 		case(sf::Keyboard::Enter):
@@ -74,6 +78,8 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 				{
 					//std::cout << "valid path\n";
 					_db.run(convertedTokens, tokens);
+					if(!_db.getErrorMsg().empty())
+						_view->_searchBox.setErrorMessage(_db.getErrorMsg());
 
 					if (convertedTokens[0] = Query::SELECT)
 					{
@@ -101,18 +107,21 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 			_model->backspace();
 			prioritize();
 			_view->_searchBox.clearErrorMessage();
+			_db.clearErrorMsg();
 			break;
 		case('\t'):
 			if (_model->getText().size() > 0)
 			{
 				_model->setLastWord(_sorter.prioritize(_model->getLastWord())[0].getString());
 				_view->_searchBox.clearErrorMessage();
+				_db.clearErrorMsg();
 			}
 			break;
 		default:
 			_model->setText(_model->getText() + c);
 			prioritize();
 			_view->_searchBox.clearErrorMessage();
+			_db.clearErrorMsg();
 		}
 		_view->_searchBox.setText(_model->getText());
 	}

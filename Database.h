@@ -13,7 +13,7 @@ private:
 	bool _hasSelected = false;
 	Table* _selectedTable = nullptr;
 	std::vector<std::string> _selectedCols;
-
+	std::string _errorMsg = "";
 	Spreadsheet _selectedSheet;
 
 	void createTable(const std::vector<DBToken>& dbtokens);
@@ -34,6 +34,8 @@ public:
 	const Table& getTable(const std::string& tableName) const;
 	const bool& hasSelected() const;
 	const Spreadsheet& getSelectedSpreadsheet() const;
+	const std::string& getErrorMsg() const;
+	void clearErrorMsg();
 };
 
 #endif

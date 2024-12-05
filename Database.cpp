@@ -40,6 +40,16 @@ const Spreadsheet& Database::getSelectedSpreadsheet() const
 	return _selectedSheet;
 }
 
+const std::string& Database::getErrorMsg() const
+{
+	return _errorMsg;
+}
+
+void Database::clearErrorMsg()
+{
+	_errorMsg = "";
+}
+
 std::vector<DBToken> Database::parse(const std::vector<Query>& queries, const std::vector<std::string>& tokens)
 {
 	std::vector<DBToken> dbtokens;
@@ -135,10 +145,10 @@ std::string Database::findOperation(const std::string& str)
 
 void Database::createTable(const std::vector<DBToken>& dbtokens)
 {
-	if(dbtokens.size() == 3)
-		_tbleMgr.addTable(Table(dbtokens[2].data[0], {}));
+	if (dbtokens.size() == 3)
+		_errorMsg = _tbleMgr.addTable(Table(dbtokens[2].data[0], {}));
 
-	_tbleMgr.addTable(Table(dbtokens[2].data[0], dbtokens[3].data));
+	_errorMsg = _tbleMgr.addTable(Table(dbtokens[2].data[0], dbtokens[3].data));
 }
 
 void Database::select(const std::vector<DBToken>& dbtokens)
@@ -147,8 +157,15 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 	_selectedCols.clear();
 
 	std::string tableName = dbtokens[3].data[0];
+
+	if (!_tbleMgr.contains(dbtokens[3].data[0]))
+	{
+		_errorMsg = "No table named \'" + dbtokens[3].data[0] + "\' found";
+		return;
+	}
+	
 	//_tbleMgr.printTable(tableName);
-	_selectedTable = _tbleMgr.getTablePtr(dbtokens[3].data[0]);
+	_selectedTable = _tbleMgr.getTablePtr(tableName);
 
 	if (_selectedTable)
 	{
@@ -181,7 +198,7 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 void Database::insert(const std::vector<DBToken>& dbtokens)
 {
 	//insertRow(name, columns list, values list)
-	_tbleMgr.insertRow(dbtokens[2].data[0], dbtokens[3].data, dbtokens[5].data);
+	_errorMsg = _tbleMgr.insertRow(dbtokens[2].data[0], dbtokens[3].data, dbtokens[5].data); 
 }
 
 void Database::deleteData(const std::vector<DBToken>& dbtokens)
@@ -190,12 +207,12 @@ void Database::deleteData(const std::vector<DBToken>& dbtokens)
 	{
 		std::string operation = findOperation(dbtokens[4].data[0]);
 		std::pair<std::string, std::string> condition = findPair(dbtokens[4].data[0], operation);
-		_tbleMgr.deleteData(dbtokens[2].data[0], condition, operation);
+		_errorMsg = _tbleMgr.deleteData(dbtokens[2].data[0], condition, operation);
 
 		//_tbleMgr.printTable(dbtokens[2].data[0]);
 	}
 	else //delete whole table
 	{
-		_tbleMgr.deleteTable(dbtokens[2].data[0]);
+		_errorMsg = _tbleMgr.deleteTable(dbtokens[2].data[0]);
 	}
 }

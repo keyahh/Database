@@ -15,7 +15,7 @@ const std::string& Table::getName() const
 	return _name;
 }
 
-void Table::addEntry(const std::string& column, const std::string& entry)
+std::string Table::addEntry(const std::string& column, const std::string& entry)
 {
 	bool found = false;
 	for (auto& i : _cols)
@@ -27,7 +27,9 @@ void Table::addEntry(const std::string& column, const std::string& entry)
 	if (found)
 	{
 		this->insert({ column, entry });
+		return "";
 	}
+	return "No column with the name \'" + column + "\' can be found";
 }
 
 std::vector<std::string> Table::getData(const std::string& column)

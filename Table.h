@@ -18,7 +18,7 @@ public:
 	Table(const std::string& name = "");
 	Table(const std::string& name, const std::vector<std::string>& colNames);
 	const std::string& getName() const;
-	void addEntry(const std::string& column, const std::string& entry);
+	std::string addEntry(const std::string& column, const std::string& entry);
 	std::vector<std::string> getData(const std::string& column);
 	void deleteData(const std::pair<std::string, std::string>& condition, const std::string& operation);
 
