@@ -23,6 +23,10 @@ Spreadsheet::Spreadsheet(int rows, int cols, const std::map<std::string, std::ve
 	}
 }
 
+Spreadsheet::Spreadsheet(const Table& table)
+{
+}
+
 void Spreadsheet::init(int rows, int cols, const std::string& label)
 {
 	_rows = rows + 1;

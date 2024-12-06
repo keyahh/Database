@@ -113,6 +113,37 @@ std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std
 	return res;
 }
 
+std::map<std::string, std::vector<std::string>> Table::getSelectedCols(const std::pair<std::string, std::string>& condition, const std::string& operation)
+{
+	std::map<std::string, std::vector<std::string>> res;
+
+	for (int i = 0; i < _cols.size(); ++i)
+	{
+		auto range = equal_range(_cols[i]);
+		std::vector<std::string> temp;
+		for (auto itr = range.first; itr != range.second; ++itr)
+		{
+			if (!condition.second.empty())
+			{
+				if (matchCondition(itr->second, condition.second, operation))
+					temp.push_back(itr->second);
+			}
+			else
+				temp.push_back(itr->second);
+
+		}
+
+		res.insert({ _cols[i], temp });
+	}
+
+	return res;
+}
+
+const std::vector<std::string>& Table::getCols() const
+{
+	return _cols;
+}
+
 std::ostream& operator<<(std::ostream& cout, const Table& table)
 {
 	for (auto& pair : table)

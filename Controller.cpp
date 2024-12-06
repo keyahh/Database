@@ -77,7 +77,15 @@ void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
 				if (_parser.checkPath(convertedTokens))
 				{
 					//std::cout << "valid path\n";
-					_db.run(convertedTokens, tokens);
+					try
+					{
+						_db.run(convertedTokens, tokens);
+					}
+					catch(const DatabaseException& e)
+					{
+						_view->_searchBox.setErrorMessage(e.what());
+					}
+
 					if(!_db.getErrorMsg().empty())
 						_view->_searchBox.setErrorMessage(_db.getErrorMsg());
 

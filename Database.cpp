@@ -143,12 +143,27 @@ std::string Database::findOperation(const std::string& str)
 		return "<";
 }
 
+
 void Database::createTable(const std::vector<DBToken>& dbtokens)
 {
 	if (dbtokens.size() == 3)
 		_errorMsg = _tbleMgr.addTable(Table(dbtokens[2].data[0], {}));
 
 	_errorMsg = _tbleMgr.addTable(Table(dbtokens[2].data[0], dbtokens[3].data));
+}
+
+int Database::getMaxRows()
+{
+	int rowCount = 0;
+
+	for (int i = 0; i < _selectedCols.size(); ++i)
+	{
+		int curCount = _selectedTable->count(_selectedCols[i]);
+		if (rowCount < curCount)
+			rowCount = curCount;
+	}
+
+	return rowCount;
 }
 
 void Database::select(const std::vector<DBToken>& dbtokens)
@@ -169,7 +184,14 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 
 	if (_selectedTable)
 	{
-		if (_tbleMgr.colsExist(tableName, dbtokens[1].data))
+		if (dbtokens[1].data[0] == "*")
+		{
+			_selectedCols = _selectedTable->getCols();
+			_selectedSheet = Spreadsheet(getMaxRows(), _selectedCols.size(),
+				_selectedTable->getSelectedCols());
+		}
+
+		else if (_tbleMgr.colsExist(tableName, dbtokens[1].data))
 		{
 			if (dbtokens.size() > 5)
 			{
@@ -180,15 +202,7 @@ void Database::select(const std::vector<DBToken>& dbtokens)
 			else
 			{
 				_selectedCols = dbtokens[1].data;
-				int rowCount = 0;
-				for (int i = 0; i < _selectedCols.size(); ++i)
-				{
-					int curCount = _selectedTable->count(_selectedCols[i]);
-					if (rowCount < curCount)
-						rowCount = curCount;
-				}
-
-				_selectedSheet = Spreadsheet(rowCount, _selectedCols.size(),
+				_selectedSheet = Spreadsheet(getMaxRows(), _selectedCols.size(),
 					_selectedTable->getSelectedCols(dbtokens[1].data));
 			}
 		}

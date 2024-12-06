@@ -132,6 +132,9 @@
     <ClCompile Include="InvalidColumn.cpp">
       <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="DatabaseException.cpp">
+      <Filter>Source Files\Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model.h">
@@ -213,6 +216,9 @@
       <Filter>Header Files\Database</Filter>
     </ClInclude>
     <ClInclude Include="InvalidColumn.h">
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseException.h">
       <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>

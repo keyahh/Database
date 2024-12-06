@@ -5,6 +5,7 @@
 #include "Queries.h"
 #include "DBToken.h"
 #include "Spreadsheet.h"
+#include "DatabaseException.h"
 
 class Database
 {
@@ -27,6 +28,7 @@ private:
 	std::pair<std::string, std::string> findPair(const std::string& str, const std::string& delimiter);
 	bool isCommand(Query q);
 	std::string findOperation(const std::string& str);
+	int getMaxRows();
 
 public:
 	Database();

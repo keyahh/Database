@@ -4,6 +4,7 @@
 #include "Cell.h"
 #include "Row.h"
 #include "DBToken.h"
+#include "Table.h"
 #include <vector>
 #include <iostream>
 #include <map>
@@ -20,6 +21,7 @@ private:
 public:
 	Spreadsheet(int rows = 0, int cols = 0, const std::string& label = "");
 	Spreadsheet(int rows, int cols, const std::map<std::string, std::vector<std::string>>& data);
+	Spreadsheet(const Table& table);
 	void init(int rows = 0, int cols = 0, const std::string& label = "");
 
 	void setCell(int row, int col, const std::string& data);
