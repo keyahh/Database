@@ -46,6 +46,8 @@ void Controller::update(float dt)
 	{
 		_view->showSuggestions(false);
 	}
+
+	_view->_searchBox.update(dt);
 }
 
 void Controller::eventHandler(sf::RenderWindow& window, sf::Event event)
